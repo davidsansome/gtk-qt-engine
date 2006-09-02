@@ -1,0 +1,145 @@
+# translation of de.po to Deutsch
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Sebastian Roth <sebastian.roth@frm2.tum.de>, 2005.
+# Jannick Kuhr <jannick.kuhr@kdemail.net>, 2006.
+msgid ""
+msgstr ""
+"Project-Id-Version: de\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2005-02-12 20:48+0000\n"
+"PO-Revision-Date: 2006-07-07 17:07+0200\n"
+"Last-Translator: Jannick Kuhr <jannick.kuhr@kdemail.net>\n"
+"Language-Team: Deutsch <kde-i18n-de@kde.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.2\n"
+
+#: _translatorinfo.cpp:1
+msgid ""
+"_: NAME OF TRANSLATORS\n"
+"Your names"
+msgstr "Sebastian Roth, Jannick Kuhr"
+
+#: _translatorinfo.cpp:3
+msgid ""
+"_: EMAIL OF TRANSLATORS\n"
+"Your emails"
+msgstr "sebastian.roth@frm2.tum.de, jannick.kuhr@kdemail.net"
+
+#: kcmgtk.cpp:206
+msgid "%1 (size %2)"
+msgstr "%1 (Größe %2)"
+
+#: kcmgtk.cpp:351
+msgid "No Mozilla profiles found"
+msgstr "Keine Mozilla-Profile gefunden"
+
+#: kcmgtk.cpp:351
+msgid "Could not load Mozilla profiles"
+msgstr "Die Mozilla-Profile konnten nicht geladen werden"
+
+#: kcmgtk.cpp:363 kcmgtk.cpp:407 kcmgtk.cpp:524
+msgid "Mozilla profile"
+msgstr "Mozilla-Profil"
+
+#: kcmgtk.cpp:378
+msgid "Thunderbird"
+msgstr "Thunderbird"
+
+#: kcmgtk.cpp:378
+msgid "Firefox"
+msgstr "Firefox"
+
+#: kcmgtk.cpp:407
+msgid ""
+"Your Mozilla profile was updated sucessfully.  You must close and restart "
+"all Firefox and Thunderbird windows for the changes to take effect"
+msgstr "Das Mozilla-Profil wurde erfolgreich aktualisiert. Alle laufenden Firefox- und Thunderbird-Fenster müssen geschlossen und neu geöffnet werden, um die Änderungen zu übernehmen."
+
+#: kcmgtk.cpp:524
+msgid "Could not write to %1"
+msgstr "%1 ließ sich nicht schreiben"
+
+#: kcmgtkwidget.cpp:191 mozillaprofile.cpp:62
+msgid "Form2"
+msgstr "Form2"
+
+#: kcmgtkwidget.cpp:192
+msgid "GTK Styles"
+msgstr "GTK-Stile"
+
+#: kcmgtkwidget.cpp:193
+msgid "Use my KDE style in GTK applications"
+msgstr "KDE-Stil in GTK-Anwendungen verwenden"
+
+#: kcmgtkwidget.cpp:194
+msgid "Use another style:"
+msgstr "Anderen Stil verwenden:"
+
+#: kcmgtkwidget.cpp:195
+msgid "Gtk-Qt theme engine homepage"
+msgstr "Homepage der Gtk-Qt-Theme-Engine"
+
+#: kcmgtkwidget.cpp:196
+msgid "http://www.freedesktop.org/wiki/Software_2fgtk_2dqt"
+msgstr "http://www.freedesktop.org/wiki/Software_2fgtk_2dqt"
+
+#: kcmgtkwidget.cpp:197
+msgid ""
+"<b>Warning:</b> The Gtk-Qt theme engine is not installed.  This means you "
+"will not be able to use your KDE style in GTK applications."
+msgstr "<b>Warnung:</b> Die Gtk-Qt-Theme-Engine ist nicht installiert. Das bedeutet ,dass Ihre KDE-Stile nicht in GTK-Anwendungen verwendet werden können."
+
+#: kcmgtkwidget.cpp:198
+msgid "GTK Fonts"
+msgstr "GTK-Schriftarten"
+
+#: kcmgtkwidget.cpp:199
+msgid "Change..."
+msgstr "Ändern ..."
+
+#: kcmgtkwidget.cpp:200
+msgid "Use another font:"
+msgstr "Eine andere Schriftart verwenden:"
+
+#: kcmgtkwidget.cpp:201
+msgid "The Quick Brown Fox Jumped Over The Lazy Dog"
+msgstr "Falsches Üben von Xylophonmusik quält jeden größeren Zwerg"
+
+#: kcmgtkwidget.cpp:202
+msgid "Use my KDE fonts in GTK applications"
+msgstr "KDE-Schriftarten in GTK-Anwendungen verwenden"
+
+#: kcmgtkwidget.cpp:203
+msgid "Preview line 1"
+msgstr "Vorschauzeile 1"
+
+#: kcmgtkwidget.cpp:204
+msgid "Firefox and Thunderbird"
+msgstr "Firefox und Thunderbird"
+
+#: kcmgtkwidget.cpp:205
+msgid ""
+"Scrollbar buttons may sometimes be displayed incorrectly in Firefox and "
+"Thunderbird.  This can be fixed by installing some files into your Mozilla "
+"profile."
+msgstr ""
+"Die Knöpfe der Bildlaufleiste werden in Firefox und Thunderbird gelegentlich falsch dargestellt. Dies kann durch das Installieren einiger Dateien "
+"in das Mozilla-Profilverzeichnis behoben werden."
+
+#: kcmgtkwidget.cpp:206
+msgid "Install scrollbar fix..."
+msgstr "Korrektur für Bildlaufleiste installieren ..."
+
+#: mozillaprofile.cpp:38 mozillaprofile.cpp:64
+msgid "Profile"
+msgstr "Profil"
+
+#: mozillaprofile.cpp:63
+msgid "Please select the profiles that you want to fix:"
+msgstr "Bitte wählen Sie die zu korrigierenden Profile aus:"
+
+

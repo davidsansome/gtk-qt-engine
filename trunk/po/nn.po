@@ -1,0 +1,143 @@
+# Translation of nn to Norwegian Nynorsk
+# This file is put in the public domain.
+# Karl Ove Hufthammer <karl@huftis.org>, 2005.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: nn\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2005-02-12 20:48+0000\n"
+"PO-Revision-Date: 2005-03-01 23:01+0100\n"
+"Last-Translator: Karl Ove Hufthammer <karl@huftis.org>\n"
+"Language-Team: Norwegian Nynorsk <i18n-nn@lister.ping.uio.no>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.9.1\n"
+
+#: _translatorinfo.cpp:1
+msgid ""
+"_: NAME OF TRANSLATORS\n"
+"Your names"
+msgstr "Karl Ove Hufthammer"
+
+#: _translatorinfo.cpp:3
+msgid ""
+"_: EMAIL OF TRANSLATORS\n"
+"Your emails"
+msgstr "karl@huftis.org"
+
+#: kcmgtk.cpp:206
+msgid "%1 (size %2)"
+msgstr "%1 (storleik %2)"
+
+#: kcmgtk.cpp:351
+msgid "No Mozilla profiles found"
+msgstr "Fann ikkje nokon Mozilla-profilar."
+
+#: kcmgtk.cpp:351
+msgid "Could not load Mozilla profiles"
+msgstr "Klarte ikkje opna Mozilla-profilar"
+
+#: kcmgtk.cpp:363 kcmgtk.cpp:407 kcmgtk.cpp:524
+msgid "Mozilla profile"
+msgstr "Mozilla-profil"
+
+#: kcmgtk.cpp:378
+msgid "Thunderbird"
+msgstr "Thunderbird"
+
+#: kcmgtk.cpp:378
+msgid "Firefox"
+msgstr "Firefox"
+
+#: kcmgtk.cpp:407
+msgid ""
+"Your Mozilla profile was updated sucessfully.  You must close and restart "
+"all Firefox and Thunderbird windows for the changes to take effect"
+msgstr "Mozilla-profilen er no oppdatert. Du må lukka og starta på nytt alle Firefox- og Thunderbird-vindauge for at endringane skal trå i kraft."
+
+#: kcmgtk.cpp:524
+msgid "Could not write to %1"
+msgstr "Klarte ikkje skriva til «%1»"
+
+#: kcmgtkwidget.cpp:191 mozillaprofile.cpp:62
+msgid "Form2"
+msgstr "Form2"
+
+#: kcmgtkwidget.cpp:192
+msgid "GTK Styles"
+msgstr "GTK-stilar"
+
+#: kcmgtkwidget.cpp:193
+msgid "Use my KDE style in GTK applications"
+msgstr "Bruk KDE-stil i GTK-program"
+
+#: kcmgtkwidget.cpp:194
+msgid "Use another style:"
+msgstr "Bruk ein annan stil:"
+
+#: kcmgtkwidget.cpp:195
+msgid "Gtk-Qt theme engine homepage"
+msgstr "Heimesida til Gtk-Qt"
+
+#: kcmgtkwidget.cpp:196
+msgid "http://www.freedesktop.org/wiki/Software_2fgtk_2dqt"
+msgstr "http://www.freedesktop.org/wiki/Software_2fgtk_2dqt"
+
+#: kcmgtkwidget.cpp:197
+msgid ""
+"<b>Warning:</b> The Gtk-Qt theme engine is not installed.  This means you "
+"will not be able to use your KDE style in GTK applications."
+msgstr "<b>Åtvaring:</b> Gtk-Qt er ikkje installert. Du kan derfor ikkje bruka KDE-stilen i GTK-program."
+
+#: kcmgtkwidget.cpp:198
+msgid "GTK Fonts"
+msgstr "GTK-skrifter"
+
+#: kcmgtkwidget.cpp:199
+msgid "Change..."
+msgstr "Endra …"
+
+#: kcmgtkwidget.cpp:200
+msgid "Use another font:"
+msgstr "Bruk ei anna skrift:"
+
+#: kcmgtkwidget.cpp:201
+msgid "The Quick Brown Fox Jumped Over The Lazy Dog"
+msgstr "Då klokka klang, så fort vi sprang!"
+
+#: kcmgtkwidget.cpp:202
+msgid "Use my KDE fonts in GTK applications"
+msgstr "Bruk KDE-skrifter i GTK-program"
+
+#: kcmgtkwidget.cpp:203
+msgid "Preview line 1"
+msgstr "Førehandsvisingslinje 1"
+
+#: kcmgtkwidget.cpp:204
+msgid "Firefox and Thunderbird"
+msgstr "Firefox og Thunderbird"
+
+#: kcmgtkwidget.cpp:205
+msgid ""
+"Scrollbar buttons may sometimes be displayed incorrectly in Firefox and "
+"Thunderbird.  This can be fixed by installing some files into your Mozilla "
+"profile."
+msgstr ""
+"Rullefeltknappane vert ikkje alltid vist rett i Firefox og Thunderbird. "
+"Dette kan rettast opp i ved å installera nokre ekstra filer i Mozilla-profilen din."
+
+#: kcmgtkwidget.cpp:206
+msgid "Install scrollbar fix..."
+msgstr "Installer rullefeltoppdatering …"
+
+#: mozillaprofile.cpp:38 mozillaprofile.cpp:64
+msgid "Profile"
+msgstr "Profil"
+
+#: mozillaprofile.cpp:63
+msgid "Please select the profiles that you want to fix:"
+msgstr "Vel profilane du vil retta:"
+
+

@@ -1,0 +1,5 @@
+ * Fix eclipse memory leaks
+ * Find out why destructor is never called.
+ * Take into account custom widget colors
+ * Listen for KIPC
+ * Force tooltip font to always be black

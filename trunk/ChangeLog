@@ -1,0 +1,22 @@
+Changes since 0.6:
+ * Fix crash in Eclipse, where a box_gap would be drawn with a negative height
+ * Fix toolbar borders in styles other than Keramik
+ * Allow for inverted sliders
+ * Fix menu backgrounds with Baghira
+ * Control Module: i18n support
+ * Fix bug where bottoms of scrollbars wouldn't be displayed
+ * Fix appearance of progress bars in Firefox when using the Alloy style
+ * Fix bug in Firefox where progress bars would "leak" outside their box
+ * Control Module: add utility to fix Firefox scrollbar buttons
+ * Fix bug that would make XFCE 4.2's settings application fail to start
+ * Fix crash bug in gaim's file transfer window
+ * Support coloured buttons
+ * Only respond to KIPC StyleChanged messages
+ * Cache pixmaps created in setColors() and setMenuBackground().  This fixes
+   a large memory leak, and improves app startup speeds and responsiveness.
+ * Ensure tooltip text is always black
+ * The theme no longer tries to override widget-specific colours set by
+   applications or user RC files
+ * Control Module: fix blank entry in style list
+ * Add a workaround for a bug in OpenOffice where menus and toolbars were
+   drawn incorrectly.
