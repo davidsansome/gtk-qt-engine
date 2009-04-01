@@ -1,0 +1,7 @@
+style "default"
+{
+  engine "qt4engine"
+  {
+  }
+}
+class "GtkWidget" style "default"

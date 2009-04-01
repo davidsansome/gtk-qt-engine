@@ -1,0 +1,118 @@
+<ui version="4.0" >
+ <class>SearchPaths</class>
+ <widget class="QDialog" name="SearchPaths" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>447</width>
+    <height>312</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Change search paths</string>
+  </property>
+  <layout class="QVBoxLayout" >
+   <item>
+    <widget class="QLabel" name="textLabel1" >
+     <property name="text" >
+      <string>The control center module could not find the GTK-Qt theme engine in its list of search paths.  If you have installed it elsewhere, you will need to add the correct path to the list below.</string>
+     </property>
+     <property name="alignment" >
+      <set>Qt::AlignVCenter</set>
+     </property>
+     <property name="wordWrap" >
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QListView" name="searchPaths" />
+   </item>
+   <item>
+    <layout class="QHBoxLayout" >
+     <item>
+      <widget class="QLineEdit" name="pathBox" />
+     </item>
+     <item>
+      <widget class="QPushButton" name="addButton" >
+       <property name="enabled" >
+        <bool>false</bool>
+       </property>
+       <property name="text" >
+        <string>Add</string>
+       </property>
+       <property name="default" >
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="removeButton" >
+       <property name="enabled" >
+        <bool>false</bool>
+       </property>
+       <property name="text" >
+        <string>Remove</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="Line" name="line1" >
+     <property name="frameShape" >
+      <enum>QFrame::HLine</enum>
+     </property>
+     <property name="frameShadow" >
+      <enum>QFrame::Sunken</enum>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QDialogButtonBox" name="buttonBox" >
+     <property name="standardButtons" >
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::NoButton|QDialogButtonBox::Ok</set>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11" />
+ <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>SearchPaths</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>377</x>
+     <y>283</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>419</x>
+     <y>308</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>SearchPaths</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>301</x>
+     <y>291</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>302</x>
+     <y>310</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

@@ -1,0 +1,317 @@
+<ui version="4.0" >
+ <class>KcmGtkWidget</class>
+ <widget class="QWidget" name="KcmGtkWidget" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>535</width>
+    <height>587</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Dialog</string>
+  </property>
+  <layout class="QVBoxLayout" >
+   <item>
+    <widget class="QGroupBox" name="groupBox" >
+     <property name="title" >
+      <string>GTK Styles</string>
+     </property>
+     <layout class="QGridLayout" >
+      <item rowspan="5" row="0" column="0" >
+       <layout class="QVBoxLayout" >
+        <item>
+         <widget class="QLabel" name="styleIcon" />
+        </item>
+        <item>
+         <spacer>
+          <property name="orientation" >
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" >
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </item>
+      <item row="0" column="1" colspan="4" >
+       <widget class="QRadioButton" name="styleKde" >
+        <property name="text" >
+         <string>&amp;Use my KDE style in GTK applications</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1" >
+       <widget class="QRadioButton" name="styleOther" >
+        <property name="text" >
+         <string>Use &amp;another style:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="2" colspan="2" >
+       <widget class="QComboBox" name="styleBox" />
+      </item>
+      <item row="1" column="4" >
+       <spacer>
+        <property name="orientation" >
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" >
+         <size>
+          <width>191</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="2" column="1" colspan="4" >
+       <widget class="QLabel" name="warning1" >
+        <property name="sizePolicy" >
+         <sizepolicy vsizetype="Minimum" hsizetype="Preferred" >
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text" >
+         <string>&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
+p, li { white-space: pre-wrap; }
+&lt;/style>&lt;/head>&lt;body style=" font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;">
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" font-weight:600;">Warning:&lt;/span> The Gtk-Qt theme engine is not installed. This means you will not be able to use your KDE style in GTK applications.&lt;/p>&lt;/body>&lt;/html></string>
+        </property>
+        <property name="wordWrap" >
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1" colspan="4" >
+       <widget class="KUrlLabel" name="warning2" >
+        <property name="text" >
+         <string>Gtk-Qt theme engine homepage</string>
+        </property>
+        <property name="url" >
+         <string>http://gtk-qt.ecs.soton.ac.uk</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1" colspan="2" >
+       <widget class="QPushButton" name="warning3" >
+        <property name="text" >
+         <string>Change search paths...</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="3" colspan="2" >
+       <spacer>
+        <property name="orientation" >
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" >
+         <size>
+          <width>211</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="groupBox_2" >
+     <property name="title" >
+      <string>GTK Fonts</string>
+     </property>
+     <layout class="QGridLayout" >
+      <item rowspan="4" row="0" column="0" >
+       <layout class="QVBoxLayout" >
+        <item>
+         <widget class="QLabel" name="fontIcon" >
+          <property name="text" >
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer>
+          <property name="orientation" >
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" >
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </item>
+      <item row="0" column="1" colspan="3" >
+       <widget class="QRadioButton" name="fontKde" >
+        <property name="text" >
+         <string>Use m&amp;y KDE fonts in GTK applications</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1" >
+       <widget class="QRadioButton" name="fontOther" >
+        <property name="text" >
+         <string>Use another font:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="2" >
+       <widget class="QPushButton" name="fontChange" >
+        <property name="text" >
+         <string>Change...</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="3" >
+       <spacer>
+        <property name="orientation" >
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" >
+         <size>
+          <width>141</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="2" column="1" colspan="3" >
+       <widget class="KSqueezedTextLabel" name="fontPreview" >
+        <property name="indent" >
+         <number>32</number>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1" colspan="3" >
+       <widget class="KSqueezedTextLabel" name="fontPreview2" >
+        <property name="text" >
+         <string>The Quick Brown Fox Jumped Over The Lazy Dog</string>
+        </property>
+        <property name="indent" >
+         <number>32</number>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="groupBox_3" >
+     <property name="title" >
+      <string>Firefox and Thunderbird</string>
+     </property>
+     <layout class="QGridLayout" >
+      <item rowspan="2" row="0" column="0" >
+       <layout class="QVBoxLayout" >
+        <item>
+         <widget class="QLabel" name="firefoxIcon" >
+          <property name="text" >
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer>
+          <property name="orientation" >
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" >
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </item>
+      <item row="0" column="1" colspan="2" >
+       <widget class="QLabel" name="label_4" >
+        <property name="sizePolicy" >
+         <sizepolicy vsizetype="Minimum" hsizetype="Preferred" >
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text" >
+         <string>Scrollbar buttons may sometimes be displayed incorrectly in Firefox and Thunderbird.  This can be fixed by installing some files into your Mozilla profile.</string>
+        </property>
+        <property name="wordWrap" >
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1" >
+       <widget class="QPushButton" name="firefoxFix" >
+        <property name="text" >
+         <string>I&amp;nstall scrollbar fix...</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="2" >
+       <spacer>
+        <property name="orientation" >
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" >
+         <size>
+          <width>221</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="label_6" >
+     <property name="sizePolicy" >
+      <sizepolicy vsizetype="Minimum" hsizetype="Preferred" >
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text" >
+      <string>Note that changes made here will only affect GTK applications when KDE is running.  To change the styles and fonts used by applications in GNOME, use the GNOME configuration tools.</string>
+     </property>
+     <property name="wordWrap" >
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <spacer>
+     <property name="orientation" >
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" >
+      <size>
+       <width>535</width>
+       <height>21</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>KUrlLabel</class>
+   <extends>QLabel</extends>
+   <header>kurllabel.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>
