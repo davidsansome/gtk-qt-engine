@@ -1,25 +1,4 @@
-/***************************************************************************
- *   Copyright (C) 2008 by David Sansome                                   *
- *   me@davidsansome.com                                                   *
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- *   This program is distributed in the hope that it will be useful,       *
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
- *   GNU General Public License for more details.                          *
- *                                                                         *
- *   You should have received a copy of the GNU General Public License     *
- *   along with this program; if not, write to the                         *
- *   Free Software Foundation, Inc.,                                       *
- *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
- ***************************************************************************/
-
 #include <math.h>
-#include <stdlib.h>
 #include <string.h>
 #include <gtk/gtkprogressbar.h>
 #include <gdk/gdk.h>
@@ -35,15 +14,11 @@
 
 #include "qt_style.h"
 #include "qt_rc_style.h"
-#include "wrapper.h"
+#include "qt_qt_wrapper.h"
 
-#define DETAIL(xx)    ((detail) && (!strcmp(xx, detail)))
+#define DETAIL(xx) ((detail) && (!strcmp(xx, detail)))
 #define DETAILHAS(xx) ((detail) && (strstr(detail, xx)))
-#define PARENT(xx)    ((parent) && (!strcmp(xx, gtk_widget_get_name(parent))))
-#define WIDGET(xx)    (GTK_IS_WIDGET(widget) && (!strcmp(xx, gtk_widget_get_name(widget))))
-
-#define GTK_QT_STANDARD_ARGS window, style, stateType, x, y, w, h, GTK_IS_WIDGET(widget) && gtk_widget_is_focus(widget)
-
+#define PARENT(xx) ((parent) && (!strcmp(xx, gtk_widget_get_name(parent))))
 #ifndef max
 #define max(x,y) ((x)>=(y)?(x):(y))
 #endif
@@ -54,6 +29,9 @@
 static void qtengine_style_init       (QtEngineStyle      *style);
 static void qtengine_style_class_init (QtEngineStyleClass *klass);
 
+static GtkNotebook *notebook = NULL;
+static int nb_num_pages = 0;
+
 static GtkStyleClass *parent_class = NULL;
 
 static PangoLayout*
@@ -62,7 +40,7 @@ get_insensitive_layout (GdkDrawable *drawable,
 
 
 static GtkShadowType
-get_shadowType (GtkStyle* style, const char *detail, GtkShadowType requested)
+get_shadow_type (GtkStyle* style, const char *detail, GtkShadowType requested)
 {
     GtkShadowType retval = GTK_SHADOW_NONE;
 
@@ -81,34 +59,21 @@ get_shadowType (GtkStyle* style, const char *detail, GtkShadowType requested)
     return retval;
 }
 
-static void sanitize_size(GdkWindow* window, gint* w, gint* h)
+static void sanitize_size(GdkWindow* window, gint* width, gint* height)
 {
-	if ((*w == -1) && (*h == -1))
-		gdk_window_get_size (window, w, h);
-	else if (*w == -1)
-		gdk_window_get_size (window, w, NULL);
-	else if (*h == -1)
-		gdk_window_get_size (window, NULL, h);
-}
-
-void grabFillPixmap(GtkWidget* widget, int x, int y, int w, int h)
-{
-	if (x < 0 || y < 0 || w <= 1 || h <= 1)
-		return;
-	
-	if (gdk_window_is_viewable(gtk_widget_get_parent_window(widget)))
-	{
-		GdkPixbuf* gpix = gdk_pixbuf_get_from_drawable(NULL, gtk_widget_get_parent_window(widget), NULL, x, y, 0, 0,  w, h);
-		setFillPixmap(gpix);
-		g_object_unref(gpix);
-	}
+	if ((*width == -1) && (*height == -1))
+		gdk_window_get_size (window, width, height);
+	else if (*width == -1)
+		gdk_window_get_size (window, width, NULL);
+	else if (*height == -1)
+		gdk_window_get_size (window, NULL, height);
 }
 
 
 static void
 draw_hline(GtkStyle* style,
            GdkWindow* window,
-           GtkStateType stateType,
+           GtkStateType state_type,
            GdkRectangle* area,
            GtkWidget* widget,
            const gchar* detail,
@@ -116,55 +81,48 @@ draw_hline(GtkStyle* style,
            gint x2,
            gint y)
 {
-	int x = min(x1, x2);
-	int w = abs(x2 - x1);
-	int h = 2;
-	
-	if (gtkQtDebug())
-		printf("HLINE (%d,%d,%d) Widget: %s  Detail: %s\n",x1,x2,y,gtk_widget_get_name(widget),detail);
+	if (gtkQtDebug)
+		printf("HLINE (%d,%d,%d) Widget: %s  Detail: %s\n",x1,y1,y,gtk_widget_get_name(widget),detail);
 
 	if (DETAIL("vscale"))
 		return;
 
-	drawHLine(GTK_QT_STANDARD_ARGS);
+	drawHLine(window,style,state_type,y,x1,x2);
 }
 
 
 static void
 draw_vline(GtkStyle* style,
            GdkWindow* window,
-           GtkStateType stateType,
+           GtkStateType state_type,
            GdkRectangle* area,
            GtkWidget* widget,
            const gchar* detail,
-           gint y1,
-           gint y2,
+           gint ySource,
+           gint yDest,
            gint x)
 {
-	int y = min(y1, y2);
-	int h = abs(y2 - y1);
-	int w = 2;
-	if (gtkQtDebug())
-		printf("VLINE (%d,%d,%d) Widget: %s  Detail: %s\n", y1, y2, x, gtk_widget_get_name(widget), detail);
+	if (gtkQtDebug)
+		printf("VLINE (%d,%d,%d) Widget: %s  Detail: %s\n",ySource ,yDest ,x,gtk_widget_get_name(widget),detail);
+
 
 	if (DETAIL("hscale"))
 		return;
-		
-	drawVLine(GTK_QT_STANDARD_ARGS);
+	drawVLine(window,style,state_type,x,ySource,yDest);
 }
 
 static void
 draw_shadow(GtkStyle     *style,
 	    GdkWindow    *window,
-	    GtkStateType  stateType,
-	    GtkShadowType shadowType,
+	    GtkStateType  state_type,
+	    GtkShadowType shadow_type,
 	    GdkRectangle *area,
 	    GtkWidget    *widget,
 	    const gchar  *detail,
 	    gint          x,
 	    gint          y,
-	    gint          w,
-	    gint          h)
+	    gint          width,
+	    gint          height)
 {
 	GdkGC *gc1 = NULL;		/* Initialize to quiet GCC */
 	GdkGC *gc2 = NULL;
@@ -175,10 +133,10 @@ draw_shadow(GtkStyle     *style,
 	gint thickness_dark;
 	gint i;
 	
-	sanitize_size(window, &w, &h);
+	sanitize_size(window, &width, &height);
 	
-	if (gtkQtDebug())
-		printf("Shadow (%d,%d,%d,%d) Widget: %s Detail: %s\n",x,y,w,h,gtk_widget_get_name(widget),detail);
+	if (gtkQtDebug)
+		printf("Shadow (%d,%d,%d,%d) Widget: %s Detail: %s\n",x,y,width,height,gtk_widget_get_name(widget),detail);
 
 	
 	if (DETAIL("menuitem"))
@@ -187,37 +145,171 @@ draw_shadow(GtkStyle     *style,
 		return;
 	if (DETAIL("entry"))
 	{
-		int editable = 1;
-		if (GTK_IS_ENTRY(widget) && !GTK_ENTRY(widget)->editable)
-			editable = 0;
-		
-		drawLineEditFrame(GTK_QT_STANDARD_ARGS, editable);
+		drawLineEdit(window,style,state_type,gtk_widget_is_focus(widget),x,y,width,height);
 		return;
 	}
 	if (DETAIL("frame") || DETAIL("trough") || DETAIL("viewport"))
 	{
 		if (!GTK_IS_SCALE(widget))
 		{
-			/*printf("Frame (%d,%d) %dx%d   %d %d\n", x,y,w,h,stateType, shadowType);*/
-			drawFrame(GTK_QT_STANDARD_ARGS, 0);
+			/*printf("Frame (%d,%d) %dx%d   %d %d\n", x,y,width,height,state_type, shadow_type);*/
+			drawFrame(window,style,state_type,shadow_type,x,y,width,height);
 			return;
 		}
 	}
 	
-	if (shadowType == GTK_SHADOW_NONE)
-		return;
-
-	if (WIDGET("GimpFgBgEditor"))
-		return;
+	/* The remainder of this function was borrowed from the "Metal" theme/
+	   I don't really want to use Qt to draw these frames as there are too
+	   many of them (it would slow down the theme engine even more).
+	   TODO: Make them use the Qt color palette */
+	 
+	switch (shadow_type)
+	{
+	case GTK_SHADOW_NONE:
+	case GTK_SHADOW_IN:
+	case GTK_SHADOW_ETCHED_IN:
+		gc1 = style->light_gc[state_type];
+		gc2 = style->dark_gc[state_type];
+		gc3 = style->black_gc;
+		gc4 = style->bg_gc[state_type];
+		break;
+	case GTK_SHADOW_OUT:
+	case GTK_SHADOW_ETCHED_OUT:
+		gc1 = style->dark_gc[state_type];
+		gc2 = style->light_gc[state_type];
+		gc3 = style->black_gc;
+		gc4 = style->bg_gc[state_type];
+		break;
+	}
 	
-	drawFrame(GTK_QT_STANDARD_ARGS, 1);
+	if (area)
+	{
+		gdk_gc_set_clip_rectangle (gc1, area);
+		gdk_gc_set_clip_rectangle (gc2, area);
+		gdk_gc_set_clip_rectangle (gc3, area);
+		gdk_gc_set_clip_rectangle (gc4, area);
+	}
+	
+	switch (shadow_type)
+	{
+	case GTK_SHADOW_NONE:
+		break;
+	case GTK_SHADOW_IN:
+		gdk_draw_line (window, gc1,
+				x, y + height - 1, x + width - 1, y + height - 1);
+		gdk_draw_line (window, gc1,
+				x + width - 1, y, x + width - 1, y + height - 1);
+		
+		gdk_draw_line (window, gc4,
+				x + 1, y + height - 2, x + width - 2, y + height - 2);
+		gdk_draw_line (window, gc4,
+				x + width - 2, y + 1, x + width - 2, y + height - 2);
+		
+		gdk_draw_line (window, gc3,
+				x + 1, y + 1, x + width - 2, y + 1);
+		gdk_draw_line (window, gc3,
+				x + 1, y + 1, x + 1, y + height - 2);
+		
+		gdk_draw_line (window, gc2,
+				x, y, x + width - 1, y);
+		gdk_draw_line (window, gc2,
+				x, y, x, y + height - 1);
+		break;
+	
+	case GTK_SHADOW_OUT:
+		gdk_draw_line (window, gc1,
+				x + 1, y + height - 2, x + width - 2, y + height - 2);
+		gdk_draw_line (window, gc1,
+				x + width - 2, y + 1, x + width - 2, y + height - 2);
+		
+		gdk_draw_line (window, gc2,
+				x, y, x + width - 1, y);
+		gdk_draw_line (window, gc2,
+				x, y, x, y + height - 1);
+		
+		gdk_draw_line (window, gc4,
+				x + 1, y + 1, x + width - 2, y + 1);
+		gdk_draw_line (window, gc4,
+				x + 1, y + 1, x + 1, y + height - 2);
+		
+		gdk_draw_line (window, gc3,
+				x, y + height - 1, x + width - 1, y + height - 1);
+		gdk_draw_line (window, gc3,
+				x + width - 1, y, x + width - 1, y + height - 1);
+		break;
+	case GTK_SHADOW_ETCHED_IN:
+	case GTK_SHADOW_ETCHED_OUT:
+		thickness_light = 1;
+		thickness_dark = 1;
+	
+		for (i = 0; i < thickness_dark; i++)
+		{
+			gdk_draw_line (window, gc1,
+					x + i,
+					y + height - i - 1,
+					x + width - i - 1,
+					y + height - i - 1);
+			gdk_draw_line (window, gc1,
+					x + width - i - 1,
+					y + i,
+					x + width - i - 1,
+					y + height - i - 1);
+		
+			gdk_draw_line (window, gc2,
+					x + i,
+					y + i,
+					x + width - i - 2,
+					y + i);
+			gdk_draw_line (window, gc2,
+					x + i,
+					y + i,
+					x + i,
+					y + height - i - 2);
+		}
+	
+		for (i = 0; i < thickness_light; i++)
+		{
+			gdk_draw_line (window, gc1,
+					x + thickness_dark + i,
+					y + thickness_dark + i,
+					x + width - thickness_dark - i - 1,
+					y + thickness_dark + i);
+			gdk_draw_line (window, gc1,
+					x + thickness_dark + i,
+					y + thickness_dark + i,
+					x + thickness_dark + i,
+					y + height - thickness_dark - i - 1);
+		
+			gdk_draw_line (window, gc2,
+					x + thickness_dark + i,
+					y + height - thickness_light - i - 1,
+					x + width - thickness_light - 1,
+					y + height - thickness_light - i - 1);
+			gdk_draw_line (window, gc2,
+					x + width - thickness_light - i - 1,
+					y + thickness_dark + i,
+					x + width - thickness_light - i - 1,
+					y + height - thickness_light - 1);
+		}
+		break;
+	}
+	
+	if (area)
+	{
+		gdk_gc_set_clip_rectangle (gc1, NULL);
+		gdk_gc_set_clip_rectangle (gc2, NULL);
+		gdk_gc_set_clip_rectangle (gc3, NULL);
+		gdk_gc_set_clip_rectangle (gc4, NULL);
+	}
+	
+	return;
 }
 
 static void
 draw_polygon(GtkStyle* style,
              GdkWindow* window,
-             GtkStateType stateType,
-             GtkShadowType shadowType,
+             GtkStateType state_type,
+             GtkShadowType shadow_type,
              GdkRectangle* area,
              GtkWidget* widget,
              const gchar* detail,
@@ -248,31 +340,31 @@ draw_polygon(GtkStyle* style,
   g_return_if_fail(window != NULL);
   g_return_if_fail(points != NULL);
 
-  switch (shadowType)
+  switch (shadow_type)
     {
     case GTK_SHADOW_IN:
-      gc1 = style->light_gc[stateType];
-      gc2 = style->dark_gc[stateType];
-      gc3 = style->light_gc[stateType];
-      gc4 = style->dark_gc[stateType];
+      gc1 = style->light_gc[state_type];
+      gc2 = style->dark_gc[state_type];
+      gc3 = style->light_gc[state_type];
+      gc4 = style->dark_gc[state_type];
       break;
     case GTK_SHADOW_ETCHED_IN:
-      gc1 = style->light_gc[stateType];
-      gc2 = style->dark_gc[stateType];
-      gc3 = style->dark_gc[stateType];
-      gc4 = style->light_gc[stateType];
+      gc1 = style->light_gc[state_type];
+      gc2 = style->dark_gc[state_type];
+      gc3 = style->dark_gc[state_type];
+      gc4 = style->light_gc[state_type];
       break;
     case GTK_SHADOW_OUT:
-      gc1 = style->dark_gc[stateType];
-      gc2 = style->light_gc[stateType];
-      gc3 = style->dark_gc[stateType];
-      gc4 = style->light_gc[stateType];
+      gc1 = style->dark_gc[state_type];
+      gc2 = style->light_gc[state_type];
+      gc3 = style->dark_gc[state_type];
+      gc4 = style->light_gc[state_type];
       break;
     case GTK_SHADOW_ETCHED_OUT:
-      gc1 = style->dark_gc[stateType];
-      gc2 = style->light_gc[stateType];
-      gc3 = style->light_gc[stateType];
-      gc4 = style->dark_gc[stateType];
+      gc1 = style->dark_gc[state_type];
+      gc2 = style->light_gc[state_type];
+      gc3 = style->light_gc[state_type];
+      gc4 = style->dark_gc[state_type];
       break;
     default:
       return;
@@ -287,7 +379,7 @@ draw_polygon(GtkStyle* style,
     }
 
   if (fill)
-    gdk_draw_polygon(window, style->bg_gc[stateType], TRUE, points, npoints);
+    gdk_draw_polygon(window, style->bg_gc[state_type], TRUE, points, npoints);
 
   npoints--;
 
@@ -357,18 +449,18 @@ draw_polygon(GtkStyle* style,
 static void
 draw_arrow(GtkStyle* style,
            GdkWindow* window,
-           GtkStateType stateType,
-           GtkShadowType shadowType,
+           GtkStateType state_type,
+           GtkShadowType shadow_type,
            GdkRectangle* area,
            GtkWidget* widget,
            const gchar *detail,
-           GtkArrowType arrowType,
-           gint fill, gint x, gint y, gint w, gint h)
+           GtkArrowType arrow_type,
+           gint fill, gint x, gint y, gint width, gint height)
 {
-	sanitize_size(window, &w, &h);
+	sanitize_size(window, &width, &height);
 	
-	if (gtkQtDebug())
-		printf("Arrow (%d,%d,%d,%d) Widget: %s  Detail: %s\n", x, y, w, h,gtk_widget_get_name(widget),detail);
+	if (gtkQtDebug)
+		printf("Arrow (%d,%d,%d,%d) Widget: %s  Detail: %s\n", x, y, width, height,gtk_widget_get_name(widget),detail);
 	
 	if (DETAIL("hscrollbar") || DETAIL("vscrollbar"))
 		return;
@@ -376,18 +468,22 @@ draw_arrow(GtkStyle* style,
 		return;
 	if (DETAIL("notebook"))
 	{
-		drawArrow(GTK_QT_STANDARD_ARGS, arrowType);
-		return;
+		drawArrow(window, style, state_type, arrow_type, x, y, width, height);
+		return;  
 	}
 	if (DETAIL("arrow"))
 	{
+		GdkPixbuf *gpix;
 		GtkWidget* parent;
-		
-		grabFillPixmap(widget, x, y, w, h);
+		if (gdk_window_is_viewable(gtk_widget_get_parent_window(widget)))
+		{
+			gpix = gdk_pixbuf_get_from_drawable(NULL, gtk_widget_get_parent_window(widget),NULL, x, y, 0, 0,  width, height);
+			setFillPixmap(gpix);
+			g_object_unref(gpix);
+		}
 		
 		parent = gtk_widget_get_parent(widget);
-		stateType = GTK_WIDGET_STATE(parent);
-		drawArrow(GTK_QT_STANDARD_ARGS, arrowType);
+		drawArrow(window,style, GTK_WIDGET_STATE(parent), arrow_type, x, y, width, height);
 		return;
 	}
 /*	if (DETAIL("menuitem"))
@@ -400,29 +496,29 @@ draw_arrow(GtkStyle* style,
 		gint                half_height;
 		gint                ax, ay, aw, ah;
 	
-		switch (shadowType)
+		switch (shadow_type)
 		{
 		case GTK_SHADOW_IN:
-			gc1 = style->bg_gc[stateType];
-			gc2 = style->dark_gc[stateType];
-			gc3 = style->light_gc[stateType];
+			gc1 = style->bg_gc[state_type];
+			gc2 = style->dark_gc[state_type];
+			gc3 = style->light_gc[state_type];
 			gc4 = style->black_gc;
 			break;
 		case GTK_SHADOW_OUT:
-			gc1 = style->dark_gc[stateType];
-			gc2 = style->light_gc[stateType];
+			gc1 = style->dark_gc[state_type];
+			gc2 = style->light_gc[state_type];
 			gc3 = style->black_gc;
-			gc4 = style->bg_gc[stateType];
+			gc4 = style->bg_gc[state_type];
 			break;
 		case GTK_SHADOW_ETCHED_IN:
-			gc2 = style->light_gc[stateType];
-			gc1 = style->dark_gc[stateType];
+			gc2 = style->light_gc[state_type];
+			gc1 = style->dark_gc[state_type];
 			gc3 = NULL;
 			gc4 = NULL;
 			break;
 		case GTK_SHADOW_ETCHED_OUT:
-			gc1 = style->dark_gc[stateType];
-			gc2 = style->light_gc[stateType];
+			gc1 = style->dark_gc[state_type];
+			gc2 = style->light_gc[state_type];
 			gc3 = NULL;
 			gc4 = NULL;
 			break;
@@ -451,9 +547,9 @@ draw_arrow(GtkStyle* style,
 			}
 		}
 		
-		if (stateType == GTK_STATE_INSENSITIVE)
+		if (state_type == GTK_STATE_INSENSITIVE)
 			draw_black_arrow (window, style->white_gc, area, arrow_type, ax + 1, ay + 1, aw, ah);
-		draw_black_arrow (window, style->fg_gc[stateType], area, arrow_type, ax, ay, aw, ah);
+		draw_black_arrow (window, style->fg_gc[state_type], area, arrow_type, ax, ay, aw, ah);
 		
 		if (area)
 		{
@@ -468,9 +564,16 @@ draw_arrow(GtkStyle* style,
 	}*/
 	else
 	{
-		grabFillPixmap(widget, x, y, w, h);
-		drawArrow(GTK_QT_STANDARD_ARGS, arrowType);
- 		return;
+		GdkPixbuf *gpix;
+		if (gdk_window_is_viewable(gtk_widget_get_parent_window(widget)))
+		{
+			gpix = gdk_pixbuf_get_from_drawable(NULL, gtk_widget_get_parent_window(widget),NULL, x, y, 0, 0,  width, height);
+			setFillPixmap(gpix);
+			g_object_unref(gpix);
+		}
+		
+		drawArrow(window, style, state_type, arrow_type, x, y, width, height);
+ 		return;  
 	}
 }
 
@@ -479,15 +582,15 @@ draw_arrow(GtkStyle* style,
 static void
 draw_diamond(GtkStyle * style,
              GdkWindow * window,
-             GtkStateType stateType,
-             GtkShadowType shadowType,
+             GtkStateType state_type,
+             GtkShadowType shadow_type,
              GdkRectangle * area,
              GtkWidget * widget,
              const gchar *detail,
              gint x,
              gint y,
-             gint w,
-             gint h)
+             gint width,
+             gint height)
 {
 }
 
@@ -496,29 +599,33 @@ draw_diamond(GtkStyle * style,
 static void
 draw_box(GtkStyle * style,
 	GdkWindow * window,
-	GtkStateType stateType,
-	GtkShadowType shadowType,
+	GtkStateType state_type,
+	GtkShadowType shadow_type,
 	GdkRectangle * area,
 	GtkWidget * widget,
 	const gchar *detail,
 	gint x,
 	gint y,
-	gint w,
-	gint h)
+	gint width,
+	gint height)
 {
-	sanitize_size(window, &w, &h);
+	GList *child1;
+	GtkWidget *child;
+	GtkNotebook *nb;
+	int nbpages;
+	sanitize_size(window, &width, &height);
 	
-	if (gtkQtDebug())
-		printf("Box (%d,%d,%d,%d) Widget: %s  Detail: %s\n",x,y,w,h,gtk_widget_get_name(widget),detail);
+	if (gtkQtDebug)
+		printf("Box (%d,%d,%d,%d) Widget: %s  Detail: %s\n",x,y,width,height,gtk_widget_get_name(widget),detail);
 
 	if (GTK_IS_SCROLLBAR(widget))
 	{
 		if (DETAIL("trough"))
 		{
 			GtkAdjustment* adj = (GtkAdjustment*)gtk_range_get_adjustment(GTK_RANGE(widget));
-			GtkOrientation orientation = ((w>h) ? GTK_ORIENTATION_HORIZONTAL : GTK_ORIENTATION_VERTICAL);
+			int orientation = ((width>height) ? GTK_ORIENTATION_HORIZONTAL : GTK_ORIENTATION_VERTICAL);
 			
-			drawScrollBar(GTK_QT_STANDARD_ARGS, orientation, adj);
+			drawScrollBar(window, style, state_type, orientation, adj, x, y, width, height);
 		}
 		return;
 	}
@@ -526,34 +633,27 @@ draw_box(GtkStyle * style,
 	{
 		/* Crude way of checking if it's a menu item, or a menubar item */
 		if (x != 0)
-			drawMenuBarItem(GTK_QT_STANDARD_ARGS);
+			drawMenuBarItem(window,style,state_type,x,y,width,height);
 		else
-		{
-			int type = 0;
-			if (GTK_IS_SEPARATOR_MENU_ITEM(widget))
-				type = 1;
-			else if (GTK_IS_TEAROFF_MENU_ITEM(widget))
-				type = 2;
-			
-			drawMenuItem(GTK_QT_STANDARD_ARGS, type);
-		}
+			drawMenuItem(window,style,state_type,x,y,width,height);
 		return;
 	}
 	if (DETAIL("menubar"))
 	{
-		if (gtkQtOpenOfficeHack() == 1)
-			parent_class->draw_box (style, window, stateType, shadowType, area, widget, detail, x, y, w, h);
+		if (openOfficeFix == 1)
+			 parent_class->draw_box (style, window, state_type, shadow_type, area, widget, detail, x, y, width, height);
 		else
-			drawMenubar(GTK_QT_STANDARD_ARGS);
+			drawMenubar(window,style,state_type,x,y,width,height);
 		return;
 	}
 	if (DETAIL("menu"))
 	{
-		if (gtkQtOpenOfficeHack() == 1)
-			 parent_class->draw_box (style, window, stateType, shadowType, area, widget, detail, x, y, w, h);
+		if (openOfficeFix == 1)
+			 parent_class->draw_box (style, window, state_type, shadow_type, area, widget, detail, x, y, width, height);
 		else
 		{
-			drawMenu(GTK_QT_STANDARD_ARGS);
+			if ((x >= 0) && (y >= 0)) /* Work around weirdness in firefox */
+				drawMenu(window,style,state_type,x,y,width,height);
 		}
 		return;
 	}
@@ -562,12 +662,16 @@ draw_box(GtkStyle * style,
 		double fraction = gtk_progress_bar_get_fraction(GTK_PROGRESS_BAR(widget));
 		GtkProgressBarOrientation orientation = gtk_progress_bar_get_orientation(GTK_PROGRESS_BAR(widget));
 		
-		drawProgressBar(GTK_QT_STANDARD_ARGS, orientation, fraction);
+		drawProgressBar(window,style,state_type,orientation,fraction,x,y,width,height);
 		return;
 	}
 	if (GTK_IS_PROGRESS(widget) && DETAIL("bar"))
 	{
-		drawProgressChunk(GTK_QT_STANDARD_ARGS);
+		if (area) gdk_gc_set_clip_rectangle(style->bg_gc[state_type], area);
+		
+		drawProgressChunk(window,style,state_type,x,y,width,height);
+		
+		if (area) gdk_gc_set_clip_rectangle(style->bg_gc[state_type], NULL);
 		return;
 	}
 	if (GTK_IS_SCALE(widget) && DETAIL("trough"))
@@ -575,16 +679,23 @@ draw_box(GtkStyle * style,
 		GtkAdjustment* adj;
 		int inverted;
 		GValue *val = (GValue*)g_malloc( sizeof(GValue) );
+		if (gdk_window_is_viewable(gtk_widget_get_parent_window(widget)))
+		{
+			GdkPixbuf *gpix;
+			gpix = gdk_pixbuf_get_from_drawable(NULL, gtk_widget_get_parent_window(widget),NULL, x, y, 0, 0,  width, height);
+			setFillPixmap(gpix);
+			g_object_unref(gpix);
+		}
 		
 		memset( val, 0, sizeof(GValue) );
 		g_value_init( val, G_TYPE_BOOLEAN );
-		g_object_get_property((GObject*)widget, "inverted", val);
+		g_object_get_property(widget, "inverted", val);
 		inverted = g_value_get_boolean(val);
 		g_value_unset(val);
 		g_free(val);
 		
 		adj = gtk_range_get_adjustment((GtkRange *) widget);
-		drawSlider(GTK_QT_STANDARD_ARGS, adj, (GTK_RANGE(widget))->orientation, inverted);
+		drawSlider(window,style,state_type,adj,x,y,width,height, (GTK_RANGE(widget))->orientation, inverted);
 		return;
 	}
 	if (DETAIL("button"))
@@ -595,13 +706,13 @@ draw_box(GtkStyle * style,
 
 		if (parent && (GTK_IS_CLIST(parent) || GTK_IS_LIST(parent) || GTK_IS_TREE_VIEW(parent)))
 		{
-			drawListHeader(GTK_QT_STANDARD_ARGS);
+			drawListHeader(window,style,state_type,x,y,width,height);
 			return;
 		}
 
 		/* this is a very very bad hack but there seems to be no way to find if a button is on a
 		 * toolbar in gtk */
-		while (1)
+		while (1)	
 		{
 			if (GTK_IS_WIDGET(parent))
 			{
@@ -617,24 +728,47 @@ draw_box(GtkStyle * style,
 			}
 			else
 				break;
-			parent = gtk_widget_get_parent(parent);
+			parent = gtk_widget_get_parent(parent); 
 		}
 		
 		parent = gtk_widget_get_parent(widget);
 
-		grabFillPixmap(widget, x, y, w, h);
 		if (toolbutton)
-			drawToolButton(GTK_QT_STANDARD_ARGS);
+			drawToolButton(window,style,state_type,x,y,width,height);
 		else
 		{
+			/* Baghira hack -- rounded buttons really ugly when they are small like 
+			   on a dropdown entry box -- eg. search/replace in gedit */	
+			/* Draw square buttons only if number of children in the hbox is 2 and 
+	 		 * the first child is a entry view (GtkEntry)*/ 
 			int defaultButton = GTK_WIDGET_HAS_FOCUS(widget);
 			GtkWindow* toplevel;
+			
+			if (isBaghira && GTK_IS_BOX(parent) && (g_list_length(GTK_BOX(parent)->children) == 2))
+			{
+				child1 = g_list_first((GTK_BOX(parent)->children));
+				child = ((GtkBoxChild *)child1->data)->widget;
+				if (GTK_IS_ENTRY(child))
+				{
+					drawSquareButton(window,style,state_type,x,y,width,height);
+					return;
+				}
+				
+				child1 = g_list_last((GTK_BOX(parent)->children));
+				child = ((GtkBoxChild *)child1->data)->widget;
+				if (GTK_IS_ENTRY(child))
+				{
+					drawSquareButton(window,style,state_type,x,y,width,height);
+					return;
+				}
+
+			}
 			
 			toplevel = GTK_WINDOW(gtk_widget_get_toplevel(widget));
 			if (toplevel && toplevel->default_widget == widget)
 				defaultButton = 1;
 			
-			drawButton(GTK_QT_STANDARD_ARGS, defaultButton);
+			drawButton(window,style,state_type,defaultButton,x,y,width,height);
 		}
 		return;
 	}
@@ -642,54 +776,54 @@ draw_box(GtkStyle * style,
 	{
 		if (GTK_IS_NOTEBOOK(widget))
 		{
-			GtkNotebook* notebook = (GtkNotebook*) widget;
-			GtkWidget* toplevel = gtk_widget_get_toplevel(widget);
-			int tabCount = g_list_length(notebook->children);
-			int selectedTab = gtk_notebook_get_current_page(notebook);
-			int tab = 0;
-			GtkPositionType tpos = gtk_notebook_get_tab_pos(notebook);
+			nb = (GtkNotebook *)widget;
+			nbpages = g_list_length(nb->children);
+			/* THIS IS WHAT WORKS NOW --
+				Tabs and tabbarbase will be drawn properly according to the QT style
+				But the tabs won't be aligned according to QT. GTK+ does not have 
+				an option for alignment of tabs. So if were to do this not only do we have to 
+				calculate the x,y position of the tab ourselves, which is difficult in Qt unless
+				we are displaying the tab (can be done by subclassing QTabBar/QTabWidget)
+				but also have to position the tab bar label ourselves in gtk. 
+			*/
 			
-			/* Find tab position */
-			int sdiff=10000, pos=-1, diff=1, i;
-			for (i=0 ; i<tabCount ; i++)
+			/* Check if we have seen this notebook before */
+			if ((nb != notebook) || (nbpages != nb_num_pages))
 			{
-				GtkWidget* tabLabel = gtk_notebook_get_tab_label(notebook, gtk_notebook_get_nth_page(notebook, i));
-				if (tabLabel)
-					diff = tabLabel->allocation.x - x;
-				if ((diff > 0) && (diff < sdiff))
-				{
-					sdiff = diff; tab = i;
-				}
+				notebook = nb;
+				nb_num_pages = nbpages;
+				initDrawTabNG(nbpages);
 			}
 			
-			drawTab(GTK_QT_STANDARD_ARGS, tabCount, selectedTab, tab, tpos == GTK_POS_BOTTOM);
+			/* Now draw the tab -- tab position is also calculated in this function
+			   checkout drawTabFrame() for drawing tabbarbase. */
+			drawTabNG(window,style,state_type,x, y, width - 2, height, nb );
 		}
 		else
-			drawTab(GTK_QT_STANDARD_ARGS, -1, -1, -1, 0);
+			drawTab(window,style,state_type,x,y,width-2,height);
 		return;
 	}
 	if (DETAIL("optionmenu"))
 	{
-		grabFillPixmap(widget, x, y, w, h);
-		drawComboBox(GTK_QT_STANDARD_ARGS);
+		drawComboBox(window,style,state_type,x,y,width,height);
 		return;
 	}
 	if (DETAIL("toolbar"))
 	{
-		if (gtkQtOpenOfficeHack() == 1)
-			parent_class->draw_box (style, window, stateType, shadowType, area, widget, detail, x, y, w, h);
+		if (openOfficeFix == 1)
+			parent_class->draw_box (style, window, state_type, shadow_type, area, widget, detail, x, y, width, height);
 		else
-			drawToolbar(GTK_QT_STANDARD_ARGS);
+			drawToolbar(window,style,state_type,x,y,width,height);
 		return;
 	}
 	if (DETAIL("spinbutton_up"))
 	{
-		drawSpinButton(GTK_QT_STANDARD_ARGS, 0);
+		drawSpinButton(window, style, state_type, 0, x, y, width, height);
 		return;
 	}
 	if (DETAIL("spinbutton_down"))
 	{
-		drawSpinButton(GTK_QT_STANDARD_ARGS, 1);
+		drawSpinButton(window, style, state_type, 1, x, y, width, height);
 		return;
 	}
 	if (DETAIL("spinbutton"))
@@ -698,7 +832,7 @@ draw_box(GtkStyle * style,
 	if (DETAIL("optionmenutab") || DETAIL("buttondefault"))
 		return;
 	
-	drawFrame(GTK_QT_STANDARD_ARGS, 0);
+	drawFrame(window,style,state_type,shadow_type,x,y,width,height);
 }
 
 
@@ -706,42 +840,57 @@ draw_box(GtkStyle * style,
 static void
 draw_flat_box(GtkStyle * style,
               GdkWindow * window,
-              GtkStateType stateType,
-              GtkShadowType shadowType,
+              GtkStateType state_type,
+              GtkShadowType shadow_type,
               GdkRectangle * area,
               GtkWidget * widget,
               const gchar *detail,
               gint x,
               gint y,
-              gint w,
-              gint h)
+              gint width,
+              gint height)
 {
-	sanitize_size(window, &w, &h);
+	sanitize_size(window, &width, &height);
 	
-	if (gtkQtDebug())
-		printf("Flat Box (%d,%d,%d,%d) Widget: %s  Detail: %s %d %d\n",x,y,w,h,gtk_widget_get_name(widget),detail, stateType, GTK_STATE_SELECTED);
+	if (gtkQtDebug)
+		printf("Flat Box (%d,%d,%d,%d) Widget: %s  Detail: %s %d %d\n",x,y,width,height,gtk_widget_get_name(widget),detail, state_type, GTK_STATE_SELECTED);
 
-	
-	if (DETAILHAS("cell_odd") && (stateType != GTK_STATE_SELECTED))
+	if (DETAIL("tooltip"))
 	{
-		gdk_draw_rectangle(window, alternateBackgroundGc(style, stateType != GTK_STATE_INSENSITIVE), TRUE, x, y, w, h);
-	}
-	else if (DETAILHAS("cell_odd") || DETAILHAS("cell_even") || DETAIL("listitem"))
-	{
-		gdk_draw_rectangle(window, style->base_gc[stateType], TRUE, x, y, w, h);
-	}
-	else if (DETAIL("tooltip"))
-	{
-		gdk_draw_rectangle(window, style->bg_gc[stateType], TRUE, x, y, w, h);
-		gdk_draw_rectangle(window, style->fg_gc[stateType], FALSE, x, y, w-1, h-1);
-	}
-	else if (DETAIL("entry_bg"))
-	{
-		int editable = 1;
-		if (GTK_IS_ENTRY(widget) && !GTK_ENTRY(widget)->editable)
-			editable = 0;
+		GdkColor tooltipColor;
+		GdkGCValues gc_values;
+		GdkGCValuesMask gc_values_mask;
+		GdkGC* tooltipGc;
+		tooltipColor.red = 255*257;
+		tooltipColor.green = 255*257;
+		tooltipColor.blue = 220*257;
+		gdk_colormap_alloc_color(style->colormap, &tooltipColor, FALSE, TRUE);
 		
-		drawLineEdit(window,style,stateType,x,y,w,h,gtk_widget_is_focus(widget), editable);
+		gc_values_mask = GDK_GC_FOREGROUND;
+		gc_values.foreground = tooltipColor;
+		
+		tooltipGc = (GdkGC*) gtk_gc_get (style->depth, style->colormap, &gc_values, gc_values_mask);
+		gdk_draw_rectangle(window, tooltipGc, TRUE, x, y, width, height);
+		gdk_draw_rectangle(window, style->black_gc, FALSE, x, y, width - 1, height - 1);
+		
+		gtk_gc_release(tooltipGc);
+	}
+	
+	if ((DETAILHAS("cell_even") || DETAILHAS("cell_odd")) && (state_type == GTK_STATE_SELECTED))
+	{
+		drawListViewItem(window,style,state_type,x,y,width,height);
+	}
+	else if (DETAIL("listitem"))
+	{
+		drawListViewItem(window,style,state_type,x,y,width,height);
+	}
+	else if (DETAILHAS("cell_even"))
+	{
+		gdk_draw_rectangle(window, style->base_gc[GTK_STATE_NORMAL], TRUE, x, y, width, height);
+	}
+	else if (DETAILHAS("cell_odd"))
+	{
+		gdk_draw_rectangle(window, alternateBackgroundGc(style), TRUE, x, y, width, height);
 	}
 }
 
@@ -749,29 +898,36 @@ draw_flat_box(GtkStyle * style,
 static void
 draw_check(GtkStyle * style,
            GdkWindow * window,
-           GtkStateType stateType,
-           GtkShadowType shadowType,
+           GtkStateType state_type,
+           GtkShadowType shadow_type,
            GdkRectangle * area,
            GtkWidget * widget,
            const gchar *detail,
            gint x,
            gint y,
-           gint w,
-           gint h)
+           gint width,
+           gint height)
 {
-	if (gtkQtDebug())
-		printf("Check (%d,%d,%d,%d) Widget: %s  Detail: %s\n", x, y, w, h,gtk_widget_get_name(widget),detail);
+	if (gtkQtDebug)
+		printf("Check (%d,%d,%d,%d) Widget: %s  Detail: %s\n", x, y, width, height,gtk_widget_get_name(widget),detail);
 	
 	if (GTK_IS_MENU_ITEM(widget))
 	{
-		if (shadowType == GTK_SHADOW_IN)
+		if (shadow_type == GTK_SHADOW_IN)
 		{
-			grabFillPixmap(widget, x, y, w, h);
-			drawMenuCheck(GTK_QT_STANDARD_ARGS);
+			if (gdk_window_is_viewable(gtk_widget_get_parent_window(widget)))
+			{
+				GdkPixbuf *gpix;
+				gpix = gdk_pixbuf_get_from_drawable(NULL, gtk_widget_get_parent_window(widget), NULL, x, y, 0, 0, width, height);
+				setFillPixmap(gpix);
+				g_object_unref(gpix);
+			}
+		
+			drawMenuCheck(window,style,state_type,x,y,width,height);
 		}
 		return;
 	}
-	drawCheckBox(GTK_QT_STANDARD_ARGS, shadowType == GTK_SHADOW_IN);
+	drawCheckBox(window,style,state_type,(shadow_type==GTK_SHADOW_IN),x,y,width,height);
 }
 
 
@@ -779,50 +935,54 @@ draw_check(GtkStyle * style,
 static void
 draw_option(GtkStyle * style,
             GdkWindow * window,
-            GtkStateType stateType,
-            GtkShadowType shadowType,
+            GtkStateType state_type,
+            GtkShadowType shadow_type,
             GdkRectangle * area,
             GtkWidget * widget,
             const gchar *detail,
             gint x,
             gint y,
-            gint w,
-            gint h)
+            gint width,
+            gint height)
 {
-	if (gtkQtDebug())
-		printf("Option (%d,%d,%d,%d) Widget: %s  Detail: %s\n", x, y, w, h,gtk_widget_get_name(widget),detail);
+	if (gtkQtDebug)
+		printf("Option (%d,%d,%d,%d) Widget: %s  Detail: %s\n", x, y, width, height,gtk_widget_get_name(widget),detail);
+	
+	if (gdk_window_is_viewable(gtk_widget_get_parent_window(widget)))
+	{
+		GdkPixbuf *gpix;
+		gpix = gdk_pixbuf_get_from_drawable(NULL, gtk_widget_get_parent_window(widget),NULL, x, y, 0, 0,  width, height);
+		setFillPixmap(gpix);
+		g_object_unref(gpix);
+	}
 
 	if (GTK_IS_MENU_ITEM(widget))
 	{
-		if (shadowType == GTK_SHADOW_IN)
-		{
-			grabFillPixmap(widget, x, y, w, h);
-			drawMenuCheck(GTK_QT_STANDARD_ARGS);
-		}
+		if (shadow_type == GTK_SHADOW_IN)
+			drawMenuCheck(window,style,state_type,x,y,width,height);
 		return;
 	}
-	grabFillPixmap(widget, x, y, w, h);
-	drawRadioButton(GTK_QT_STANDARD_ARGS, shadowType == GTK_SHADOW_IN);
+	drawRadioButton(window,style,state_type,(shadow_type==GTK_SHADOW_IN),x,y,width,height);
 }
 
 
 static void
 draw_tab(GtkStyle * style,
          GdkWindow * window,
-         GtkStateType stateType,
-         GtkShadowType shadowType,
+         GtkStateType state_type,
+         GtkShadowType shadow_type,
          GdkRectangle * area,
          GtkWidget * widget,
          const gchar *detail,
          gint x,
          gint y,
-         gint w,
-         gint h)
+         gint width,
+         gint height)
 {
-	if (gtkQtDebug())
-		printf("Tab (%d,%d,%d,%d) Widget: %s  Detail: %s\n", x, y, w, h,gtk_widget_get_name(widget),detail);
+	if (gtkQtDebug)
+		printf("Tab (%d,%d,%d,%d) Widget: %s  Detail: %s\n", x, y, width, height,gtk_widget_get_name(widget),detail);
 	
-	gtk_paint_box(style, window, stateType, shadowType, area, widget, detail, x, y, w, h);
+	gtk_paint_box(style, window, state_type, shadow_type, area, widget, detail, x, y, width, height);
 }
 
 
@@ -830,45 +990,45 @@ draw_tab(GtkStyle * style,
 static void
 draw_shadow_gap(GtkStyle * style,
                 GdkWindow * window,
-                GtkStateType stateType,
-                GtkShadowType shadowType,
+                GtkStateType state_type,
+                GtkShadowType shadow_type,
                 GdkRectangle * area,
                 GtkWidget * widget,
                 const gchar *detail,
                 gint x,
                 gint y,
-                gint w,
-                gint h,
+                gint width,
+                gint height,
                 GtkPositionType gap_side,
                 gint gap_x,
-                gint gap_w)
+                gint gap_width)
 {
 	GdkGC *gc1 = NULL;
 	GdkGC *gc2 = NULL;
 	
 	g_return_if_fail (window != NULL);
 	
-	sanitize_size (window, &w, &h);
-	shadowType = get_shadowType (style, detail, shadowType);
+	sanitize_size (window, &width, &height);
+	shadow_type = get_shadow_type (style, detail, shadow_type);
 	
-	if (gtkQtDebug())
-		printf("Shadow_Gap (%d,%d,%d,%d) Widget: %s  Detail: %s\n",x,y,w,h,gtk_widget_get_name(widget),detail);
+	if (gtkQtDebug)
+		printf("Shadow_Gap (%d,%d,%d,%d) Widget: %s  Detail: %s\n",x,y,width,height,gtk_widget_get_name(widget),detail);
 	
-	switch (shadowType) {
+	switch (shadow_type) {
 	case GTK_SHADOW_NONE:
 		return;
 	case GTK_SHADOW_IN:
-		gc1 = style->dark_gc[stateType];
-		gc2 = style->light_gc[stateType];
+		gc1 = style->dark_gc[state_type];
+		gc2 = style->light_gc[state_type];
 		break;
 	case GTK_SHADOW_OUT:
-		gc1 = style->light_gc[stateType];
-		gc2 = style->dark_gc[stateType];
+		gc1 = style->light_gc[state_type];
+		gc2 = style->dark_gc[state_type];
 		break;
 	case GTK_SHADOW_ETCHED_IN:
 	case GTK_SHADOW_ETCHED_OUT:
-		gc1 = style->dark_gc[stateType];
-		gc2 = style->dark_gc[stateType];
+		gc1 = style->dark_gc[state_type];
+		gc2 = style->dark_gc[state_type];
 	}
 
 	if (area) {
@@ -883,87 +1043,87 @@ draw_shadow_gap(GtkStyle * style,
 				       x, y,
 				       x + gap_x, y);
 		}
-		if ((w - (gap_x + gap_w)) > 0) {
+		if ((width - (gap_x + gap_width)) > 0) {
 			gdk_draw_line (window, gc1, 
-				       x + gap_x + gap_w - 1, y,
-				       x + w - 1, y);
+				       x + gap_x + gap_width - 1, y,
+				       x + width - 1, y);
 		}
 		gdk_draw_line (window, gc1, 
 			       x, y, 
-			       x, y + h - 1);
+			       x, y + height - 1);
 		gdk_draw_line (window, gc2,
-			       x + w - 1, y,
-			       x + w - 1, y + h - 1);
+			       x + width - 1, y,
+			       x + width - 1, y + height - 1);
 		gdk_draw_line (window, gc2,
-			       x, y + h - 1,
-			       x + w - 1, y + h - 1);
+			       x, y + height - 1,
+			       x + width - 1, y + height - 1);
 		break;
         case GTK_POS_BOTTOM:
 		gdk_draw_line (window, gc1,
 			       x, y,
-			       x + w - 1, y);
+			       x + width - 1, y);
 		gdk_draw_line (window, gc1, 
 			       x, y, 
-			       x, y + h - 1);
+			       x, y + height - 1);
 		gdk_draw_line (window, gc2,
-			       x + w - 1, y,
-			       x + w - 1, y + h - 1);
+			       x + width - 1, y,
+			       x + width - 1, y + height - 1);
 
 		if (gap_x > 0) {
 			gdk_draw_line (window, gc2, 
-				       x, y + h - 1, 
-				       x + gap_x, y + h - 1);
+				       x, y + height - 1, 
+				       x + gap_x, y + height - 1);
 		}
-		if ((w - (gap_x + gap_w)) > 0) {
+		if ((width - (gap_x + gap_width)) > 0) {
 			gdk_draw_line (window, gc2, 
-				       x + gap_x + gap_w - 1, y + h - 1,
-				       x + w - 1, y + h - 1);
+				       x + gap_x + gap_width - 1, y + height - 1,
+				       x + width - 1, y + height - 1);
 		}
 		
 		break;
         case GTK_POS_LEFT:
 		gdk_draw_line (window, gc1,
 			       x, y,
-			       x + w - 1, y);
+			       x + width - 1, y);
 		if (gap_x > 0) {
 			gdk_draw_line (window, gc1, 
 				       x, y,
 				       x, y + gap_x);
 		}
-		if ((h - (gap_x + gap_w)) > 0) {
+		if ((height - (gap_x + gap_width)) > 0) {
 			gdk_draw_line (window, gc1, 
-				       x, y + gap_x + gap_w - 1,
-				       x, y + h - 1);
+				       x, y + gap_x + gap_width - 1,
+				       x, y + height - 1);
 		}
 		gdk_draw_line (window, gc2,
-			       x + w - 1, y,
-			       x + w - 1, y + h - 1);
+			       x + width - 1, y,
+			       x + width - 1, y + height - 1);
 		gdk_draw_line (window, gc2,
-			       x, y + h - 1,
-			       x + w - 1, y + h - 1);
+			       x, y + height - 1,
+			       x + width - 1, y + height - 1);
 		break;
         case GTK_POS_RIGHT:
 		gdk_draw_line (window, gc1,
 			       x, y,
-			       x + w - 1, y);
+			       x + width - 1, y);
 		gdk_draw_line (window, gc1, 
 			       x, y, 
-			       x, y + h - 1);
+			       x, y + height - 1);
 
 
 		if (gap_x > 0) {
 			gdk_draw_line (window, gc2, 
-				       x + w - 1, y,
-				       x + w - 1, y + gap_x);
+				       x + width - 1, y,
+				       x + width - 1, y + gap_x);
 		}
-		if ((h - (gap_x + gap_w)) > 0) {
+		if ((height - (gap_x + gap_width)) > 0) {
 			gdk_draw_line (window, gc2, 
-				       x + w - 1, y + gap_x + gap_w - 1,
-				       x + w - 1, y + h - 1);
+				       x + width - 1, y + gap_x + gap_width - 1,
+				       x + width - 1, y + height - 1);
 		}
 		gdk_draw_line (window, gc2,
-			       x, y + h - 1,
-			       x + w - 1, y + h - 1);
+			       x, y + height - 1,
+			       x + width - 1, y + height - 1);
 
 	}
 	
@@ -977,98 +1137,116 @@ draw_shadow_gap(GtkStyle * style,
 static void
 draw_box_gap(GtkStyle* style,
              GdkWindow* window,
-             GtkStateType stateType,
-             GtkShadowType shadowType,
+             GtkStateType state_type,
+             GtkShadowType shadow_type,
              GdkRectangle* area,
              GtkWidget* widget,
              const gchar* detail,
              gint x,
              gint y,
-             gint w,
-             gint h,
+             gint width,
+             gint height,
              GtkPositionType gap_side,
              gint gap_x,
-             gint gap_w)
+             gint gap_width)
 {
-	sanitize_size (window, &w, &h);
+	sanitize_size (window, &width, &height);
 	
-	if (w<0 || h<0) return;  /* Eclipse really can be this stupid! */
+	if (width<0 || height<0) return;  /* Eclipse really can be this stupid! */
 	
-	if (gtkQtDebug())
-		printf("Box_gap (%d,%d,%d,%d) Widget: %s  Detail: %s\n", x, y, w, h,gtk_widget_get_name(widget),detail);
+	if (gtkQtDebug)
+		printf("Box_gap (%d,%d,%d,%d) Widget: %s  Detail: %s\n", x, y, width, height,gtk_widget_get_name(widget),detail);
 	
 	if (DETAIL("notebook"))
-		drawTabFrame(GTK_QT_STANDARD_ARGS);
+		drawTabFrame(window,style,state_type,x,y-2,width,height+2, gtk_notebook_get_tab_pos((GtkNotebook *)widget));
 }
 
 
 static void
 draw_extension(GtkStyle * style,
                GdkWindow * window,
-               GtkStateType stateType,
-               GtkShadowType shadowType,
+               GtkStateType state_type,
+               GtkShadowType shadow_type,
                GdkRectangle * area,
                GtkWidget * widget,
                const gchar *detail,
                gint x,
                gint y,
-               gint w,
-               gint h,
+               gint width,
+               gint height,
                GtkPositionType gap_side)
 {
 	g_return_if_fail(style != NULL);
 	g_return_if_fail(window != NULL);
 	
-	sanitize_size (window, &w, &h);
+	sanitize_size (window, &width, &height);
 	
-	if (gtkQtDebug())
-		printf("Extension (%d,%d,%d,%d) Widget: %s  Detail: %s\n", x, y, w, h,gtk_widget_get_name(widget),detail);
+	if (gtkQtDebug)
+		printf("Extension (%d,%d,%d,%d) Widget: %s  Detail: %s\n", x, y, width, height,gtk_widget_get_name(widget),detail);
 	
-	gtk_paint_box(style, window, stateType, shadowType, area, widget, detail, x, y, w, h);
+	gtk_paint_box(style, window, state_type, shadow_type, area, widget, detail,
+			x, y, width, height);
 }
 
 
 static void
 draw_focus (GtkStyle     *style,
 	    GdkWindow    *window,
-	    GtkStateType  stateType,
+	    GtkStateType  state_type,
 	    GdkRectangle *area,
 	    GtkWidget    *widget,
 	    const gchar  *detail,
 	    gint          x,
 	    gint          y,
-	    gint          w,
-	    gint          h)
+	    gint          width,
+	    gint          height)
 {
-	if (gtkQtDebug())
-		printf("Focus Rect (%d,%d,%d,%d) Widget: %s  Detail: %s\n", x, y, w, h,gtk_widget_get_name(widget),detail);
+	if (gtkQtDebug)
+		printf("Focus Rect (%d,%d,%d,%d) Widget: %s  Detail: %s\n", x, y, width, height,gtk_widget_get_name(widget),detail);
+
+	GtkWidget* parent = gtk_widget_get_parent(widget);
+	
+	if (GTK_IS_CHECK_BUTTON(widget) ||
+	    GTK_IS_RADIO_BUTTON(widget) ||
+	    (parent && (GTK_IS_CLIST(parent) || GTK_IS_LIST(parent) || GTK_IS_TREE_VIEW(parent))))
+	{
+		drawFocusRect(window, style, x, y, width, height);
+	}
+	return;
 }
 
 static void
 draw_slider(GtkStyle * style,
             GdkWindow * window,
-            GtkStateType stateType,
-            GtkShadowType shadowType,
+            GtkStateType state_type,
+            GtkShadowType shadow_type,
             GdkRectangle * area,
             GtkWidget * widget,
             const gchar *detail,
             gint x,
             gint y,
-            gint w,
-            gint h,
+            gint width,
+            gint height,
             GtkOrientation orientation)
 {
-	if (gtkQtDebug())
-		printf("Slider (%d,%d,%d,%d) Widget: %s  Detail: %s\n", x, y, w, h,gtk_widget_get_name(widget),detail);
+	if (gtkQtDebug)
+		printf("Slider (%d,%d,%d,%d) Widget: %s  Detail: %s\n", x, y, width, height,gtk_widget_get_name(widget),detail);
 	
 	if (DETAIL("slider"))
 	{
 		GtkAdjustment* adj = gtk_range_get_adjustment(GTK_RANGE(widget));
+		int widgetX, widgetY;
+		
+		GtkWidget* parent = widget;
+		while (gtk_widget_get_parent(parent) != NULL)
+			parent = gtk_widget_get_parent(parent);
+		
+		gtk_widget_translate_coordinates(widget, parent, 0, 0, &widgetX, &widgetY);
 		
 		if (orientation == GTK_ORIENTATION_VERTICAL)
-			drawScrollBarSlider(GTK_QT_STANDARD_ARGS, orientation);
+			drawScrollBarSlider(window, style, state_type, orientation, adj, x-1, y, width+2, height, y-widgetY, widget->allocation.height);
 		else
-			drawScrollBarSlider(GTK_QT_STANDARD_ARGS, orientation);
+			drawScrollBarSlider(window, style, state_type, orientation, adj, x, y-1, width, height+2, x-widgetX, widget->allocation.width);
 		return;
 	}
 }
@@ -1076,33 +1254,33 @@ draw_slider(GtkStyle * style,
 static void
 draw_handle(GtkStyle * style,
             GdkWindow * window,
-            GtkStateType stateType,
-            GtkShadowType shadowType,
+            GtkStateType state_type,
+            GtkShadowType shadow_type,
             GdkRectangle * area,
             GtkWidget * widget,
             const gchar *detail,
             gint x,
             gint y,
-            gint w,
-            gint h,
+            gint width,
+            gint height,
             GtkOrientation orientation)
 {
 	g_return_if_fail(style != NULL);
 	g_return_if_fail(window != NULL);
 	
-	sanitize_size(window, &w, &h);
+	sanitize_size(window, &width, &height);
 	
-	if (gtkQtDebug())
-		printf("Handle (%d,%d,%d,%d) Widget: %s  Detail: %s \n",x,y,w,h,gtk_widget_get_name(widget),detail, stateType);
+	if (gtkQtDebug)
+		printf("Handle (%d,%d,%d,%d) Widget: %s  Detail: %s \n",x,y,width,height,gtk_widget_get_name(widget),detail, state_type);
 	
-	drawSplitter(GTK_QT_STANDARD_ARGS, orientation);
+	drawSplitter(window,style,state_type,orientation,x,y,width,height);
 	return;
 }
 
 static
 void  draw_layout  (GtkStyle *style,
                         GdkWindow *window,
-                        GtkStateType stateType,
+                        GtkStateType state_type,
                         gboolean use_text,
                         GdkRectangle *area,
                         GtkWidget *widget,
@@ -1111,10 +1289,13 @@ void  draw_layout  (GtkStyle *style,
                         gint y,
                         PangoLayout *layout)
 {
-	GdkGC *gc;
 
-	if (gtkQtDebug())
-		printf("Layout (%d,%d) Widget: %s  Detail: %s %d \n",x,y,gtk_widget_get_name(widget),detail, stateType);
+	GdkColor color;
+	GdkGC *gc;
+	getTextColor(&color, state_type);
+	
+	if (gtkQtDebug)
+		printf("Layout (%d,%d) Widget: %s  Detail: %s %d \n",x,y,gtk_widget_get_name(widget),detail, state_type);
 
 	if (DETAIL("accellabel") || DETAIL("label") || DETAIL("cellrenderertext"))
 	{
@@ -1124,17 +1305,54 @@ void  draw_layout  (GtkStyle *style,
 
 		/* printf("parent's names are %s->%s->%s\n", gtk_widget_get_name(widget), gtk_widget_get_name(parent), gtk_widget_get_name(parent1)); */
 
-		/* printf("Drawing an label -- with state %d at %d %d\n", stateType, x, y); */
+		/* In baghira -- even highlight the menu bar items */
+		if ((GTK_IS_MENU_ITEM(parent) && (!GTK_IS_MENU_BAR(parent1) || isBaghira || isPolyester)) || GTK_IS_TREE_VIEW(widget))
+		{
+			PangoAttrList *layoutattr;
+		
+			const gchar *text;
+			gint text_length = 0;
+			gint text_bytelen = 0;
+			text = pango_layout_get_text (layout);
+			if (text != 0)
+			{
+				PangoAttribute *textcolorattr;
+				text_length = g_utf8_strlen (text, -1);
+				text_bytelen = strlen (text);
+				
+				textcolorattr = pango_attr_foreground_new(color.red, color.green, color.blue);
+				textcolorattr->start_index = 0;
+				textcolorattr->end_index = text_bytelen; 
+				
+				layoutattr = pango_layout_get_attributes(layout); 
+				
+				if (layoutattr == NULL)
+				{
+					layoutattr = pango_attr_list_new();
+					pango_attr_list_insert(layoutattr, pango_attribute_copy(textcolorattr));
+					pango_layout_set_attributes(layout,layoutattr);
+					pango_attr_list_unref(layoutattr);
+				}
+				else
+				{
+					pango_attr_list_change(layoutattr, pango_attribute_copy(textcolorattr));
+					pango_layout_set_attributes(layout,layoutattr);
+				}
+				pango_attribute_destroy(textcolorattr);
+			}
+
+		}
+		/* printf("Drawing an label -- with state %d at %d %d\n", state_type, x, y); */
 	}
 
 	g_return_if_fail (window != NULL);
 
-	gc = use_text ? style->text_gc[stateType] : style->fg_gc[stateType];
+	gc = use_text ? style->text_gc[state_type] : style->fg_gc[state_type];
 
 	if (area)
     		gdk_gc_set_clip_rectangle (gc, area);
 
-  	if (stateType == GTK_STATE_INSENSITIVE)
+  	if (state_type == GTK_STATE_INSENSITIVE)
     	{
       		PangoLayout *ins;
       		ins = get_insensitive_layout (window, layout);
@@ -1619,43 +1837,46 @@ gtk_style_real_realize (GtkStyle *style)
 static void
 realize (GtkStyle* style)
 {
+  setColors(style);
   gtk_style_real_realize(style);
 }
 
 static void
-set_background (GtkStyle* style, GdkWindow* window, GtkStateType stateType)
+set_background (GtkStyle *style, GdkWindow *window, GtkStateType state_type)
 {
-	GdkPixmap* pixmap = NULL;
-	gint parent_relative;
-	
-	GtkWidget* parent = 0;
-	gdk_window_get_user_data(window, (void**) &parent);
-	
-	if (GTK_IS_MENU((GtkWidget*) parent))
-		pixmap = menuBackground();
-	
-	if (pixmap == 0) /* menuBackground() can return null if the theme engine is disabled */
-		pixmap = style->bg_pixmap[stateType];
-	
-	if (pixmap)
-	{
-		if (pixmap == (GdkPixmap*) GDK_PARENT_RELATIVE)
-		{
-			pixmap = NULL;
-			parent_relative = TRUE;
-		}
-		else
-		{
-			parent_relative = FALSE;
-			gdk_drawable_set_colormap(pixmap, style->colormap);
-		}
-	
-		if (pixmap && !gdk_drawable_get_colormap(pixmap))
-			gdk_drawable_set_colormap(pixmap, gdk_drawable_get_colormap(window));
-		gdk_window_set_back_pixmap(window, pixmap, parent_relative);
-	}
-	else
-		gdk_window_set_background(window, &style->bg[stateType]);
+  GdkPixmap *pixmap;
+  gint parent_relative;
+  GdkPixmap* pix_test;
+  
+  /* What kind of horrible person would store a pointer to a widget here... */
+  void* parent = 0;
+  gdk_window_get_user_data(window, &parent);
+  if (GTK_IS_MENU((GtkWidget*) parent))
+  {
+    pix_test = QTENGINE_STYLE(style)->menuBackground;
+  }
+  else
+    pix_test = style->bg_pixmap[state_type];
+  
+  if (pix_test)
+    {
+      if (pix_test == (GdkPixmap*) GDK_PARENT_RELATIVE)
+        {
+          pixmap = NULL;
+          parent_relative = TRUE;
+        }
+      else
+        {
+          pixmap = pix_test;
+          parent_relative = FALSE;
+	  gdk_drawable_set_colormap(pixmap, style->colormap);
+        }
+      
+      if (pixmap && !gdk_drawable_get_colormap (pixmap)) gdk_drawable_set_colormap (pixmap, gdk_drawable_get_colormap (window));
+      gdk_window_set_back_pixmap (window, pixmap, parent_relative);
+    }
+  else
+    gdk_window_set_background (window, &style->bg[state_type]);
 }
 
 static void

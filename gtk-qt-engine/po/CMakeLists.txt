@@ -29,14 +29,13 @@ ADD_CUSTOM_TARGET(
 
 # Stuff to generate the .pot
 FILE(GLOB POT_UIFILES ../kcm_gtk/*.ui)
-SET(POT_SOURCES ../kcm_gtk/kcmgtk.cpp ../kcm_gtk/firefoxfix.cpp ../kcm_gtk/gtkrcfile.cpp ../kcm_gtk/searchpaths.cpp)
+SET(POT_SOURCES ../kcm_gtk/kcmgtk.cpp)
 SET(POT_OUTPUT gtkqtengine.pot)
 
 ADD_CUSTOM_COMMAND(
 	OUTPUT _${POT_OUTPUT}
 	COMMAND ${EXTRACTRC_PATH} ${POT_UIFILES} > rc.cpp
-	COMMAND ${XGETTEXT_PATH} --foreign-user -C -ci18n -ki18n -ktr2i18n
-		-kI18N_NOOP -kI18N_NOOP2 -kaliasLocale -o ${POT_OUTPUT} rc.cpp ${POT_SOURCES}
+	COMMAND ${XGETTEXT_PATH} --foreign-user -C -ci18n -ki18n -ktr2i18n -kI18N_NOOP -kI18N_NOOP2 -kaliasLocale -x "${KDE3_INCLUDE_DIR}/kde.pot" -o ${POT_OUTPUT} rc.cpp ${POT_SOURCES}
 	COMMAND rm rc.cpp
 )
 

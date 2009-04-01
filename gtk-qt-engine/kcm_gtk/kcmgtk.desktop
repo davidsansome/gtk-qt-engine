@@ -1,12 +1,16 @@
 [Desktop Entry]
 Name=GTK Styles and Fonts
 Comment=Control the style and fonts used by GTK applications
-Exec=kcmshell4 kcmgtk4
+Exec=kcmshell kcmgtk
 Terminal=false
-Icon=kcmgtk.png
+Icon=gnome_apps.png
+OnlyShowIn=KDE;
 
 Encoding=UTF-8
-X-Keywords=kcmgtk,gtk,style,font,theme
+X-Keywords=kcmgtk,gtk,style,font
+X-KDE-FactoryName=kcmgtk
+X-KDE-Library=kcmgtk
+X-KDE-ModuleType=Library
 
 Name[de]=GTK-Stile und Schriftarten
 Comment[de]=Einstellung der Stile und Schriftarten in GTK-Anwendungen
@@ -19,9 +23,6 @@ Comment[tr]=GTK uygulamalarının stil ve yazıtiplerini KDE görünümlü yapar
 Name[ru]=Стили и шрифты GTK
 Comment[ru]=Управление стилями и шрифтами GTK
 
-Type=Service
-X-KDE-ServiceTypes=KCModule
-X-KDE-Library=kcm_gtk4
-X-KDE-ParentApp=kcontrol
-Categories=Settings;Qt;KDE;X-KDE-settings-looknfeel;
-X-KDE-System-Settings-Parent-Category=appearance
+Type=Application
+Categories=Settings;X-KDE-settings-looknfeel;
+

@@ -1,0 +1,29 @@
+New features and general improvements:
+ * Changes in the control center module will now only affect applications inside KDE.  Applications running in GNOME can be themed separately using the GNOME tools.
+ * Add a setting for emacs keyboard shortcuts.
+ * When the Qt theme can't be found, display a dialog allowing the user to modify the GTK search paths.
+ * Greatly improve icon loading code.
+ * Add an indication for default buttons, and widgets that have keyboard focus.
+ * Respect KDE's "Show icons on buttons" setting.
+
+Buildsystem changes:
+ * Switch the buildsystem from autotools to CMake.  CMake 2.4 is now required to build the project.
+ * Fix a bug that would disable Bonobo support even when the correct packages were installed.
+ * Fixed compilation under GCC 4.3.
+
+Bugfixes:
+ * Fix a bug that caused Qt colours not to be applied to GTK applications.  This fixes several graphical problems when using dark colour schemes.
+ * Fix a bug where menu checkmarks would be displayed as a series of horizontal lines.
+ * Fix OpenOffice detection on Fedora Core.
+ * Fix appearance of scrollbar sliders in the Domino widget style.
+ * Setting a font with bold or italic options now works correctly.
+ * Fix command line parsing on FreeBSD.
+ * Fix invalid CSS comments in the Firefox stylesheets.
+ * Highlighted menu item text is now always white.
+ * Fix button appearance in the Motif Plus style.
+
+i18n:
+ * Italian translation by Davide Madrisan.
+ * Bulgarian translation by Zlatko Popov.
+ * Russian translation by Viktor Ponasenkov.
+ * Turkish translation by S.Çağlar Onur.

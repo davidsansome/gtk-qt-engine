@@ -4,261 +4,148 @@
 #
 # Sebastian Roth <sebastian.roth@frm2.tum.de>, 2005.
 # Jannick Kuhr <jannick.kuhr@kdemail.net>, 2006.
-# Jannick Kuhr <opensource@kuhr.org>, 2008.
 msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-03 10:54+0100\n"
-"PO-Revision-Date: 2008-07-28 14:56+0200\n"
-"Last-Translator: Jannick Kuhr <opensource@kuhr.org>\n"
-"Language-Team: German <kde-i18n-de@lists.kde.org>\n"
+"POT-Creation-Date: 2005-02-12 20:48+0000\n"
+"PO-Revision-Date: 2006-07-07 17:07+0200\n"
+"Last-Translator: Jannick Kuhr <jannick.kuhr@kdemail.net>\n"
+"Language-Team: Deutsch <kde-i18n-de@kde.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 0.2\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: KBabel 1.11.2\n"
 
-#. i18n: tag string
-#. i18n: file /home/david/projects/gtk-qt/trunk/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 13
-#: rc.cpp:3
-msgid "Dialog"
-msgstr "Dialog"
+#: _translatorinfo.cpp:1
+msgid ""
+"_: NAME OF TRANSLATORS\n"
+"Your names"
+msgstr "Sebastian Roth, Jannick Kuhr"
 
-#. i18n: tag string
-#. i18n: file /home/david/projects/gtk-qt/trunk/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 19
-#: rc.cpp:6
+#: _translatorinfo.cpp:3
+msgid ""
+"_: EMAIL OF TRANSLATORS\n"
+"Your emails"
+msgstr "sebastian.roth@frm2.tum.de, jannick.kuhr@kdemail.net"
+
+#: kcmgtk.cpp:206
+msgid "%1 (size %2)"
+msgstr "%1 (Größe %2)"
+
+#: kcmgtk.cpp:351
+msgid "No Mozilla profiles found"
+msgstr "Keine Mozilla-Profile gefunden"
+
+#: kcmgtk.cpp:351
+msgid "Could not load Mozilla profiles"
+msgstr "Die Mozilla-Profile konnten nicht geladen werden"
+
+#: kcmgtk.cpp:363 kcmgtk.cpp:407 kcmgtk.cpp:524
+msgid "Mozilla profile"
+msgstr "Mozilla-Profil"
+
+#: kcmgtk.cpp:378
+msgid "Thunderbird"
+msgstr "Thunderbird"
+
+#: kcmgtk.cpp:378
+msgid "Firefox"
+msgstr "Firefox"
+
+#: kcmgtk.cpp:407
+msgid ""
+"Your Mozilla profile was updated sucessfully.  You must close and restart "
+"all Firefox and Thunderbird windows for the changes to take effect"
+msgstr "Das Mozilla-Profil wurde erfolgreich aktualisiert. Alle laufenden Firefox- und Thunderbird-Fenster müssen geschlossen und neu geöffnet werden, um die Änderungen zu übernehmen."
+
+#: kcmgtk.cpp:524
+msgid "Could not write to %1"
+msgstr "%1 ließ sich nicht schreiben"
+
+#: kcmgtkwidget.cpp:191 mozillaprofile.cpp:62
+msgid "Form2"
+msgstr "Form2"
+
+#: kcmgtkwidget.cpp:192
 msgid "GTK Styles"
 msgstr "GTK-Stile"
 
-#. i18n: tag string
-#. i18n: file /home/david/projects/gtk-qt/trunk/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 45
-#: rc.cpp:9
+#: kcmgtkwidget.cpp:193
 msgid "&Use my KDE style in GTK applications"
-msgstr "KDE-Stil in GTK-Anwendungen &verwenden"
+msgstr "KDE-Stil in GTK-Anwendungen verwenden"
 
-#. i18n: tag string
-#. i18n: file /home/david/projects/gtk-qt/trunk/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 52
-#: rc.cpp:12
+#: kcmgtkwidget.cpp:194
 msgid "Use &another style:"
-msgstr "&Anderen Stil verwenden:"
+msgstr "Anderen Stil verwenden:"
 
-#. i18n: tag string
-#. i18n: file /home/david/projects/gtk-qt/trunk/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 84
-#: rc.cpp:15
-msgid ""
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css"
-"\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Sans Serif'; font-size:10pt; font-"
-"weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-"
-"weight:600;\">Warning:</span> The Gtk-Qt theme engine is not installed. This "
-"means you will not be able to use your KDE style in GTK applications.</p></"
-"body></html>"
-msgstr ""
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css"
-"\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Sans Serif'; font-size:10pt; font-"
-"weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-"
-"weight:600;\">Warnung:</span> Die Gtk-Qt-Theme-Engine ist nicht installiert. Das bedeutet, dass "
-"Sie Ihren KDE-Stil nicht in GTK-Anwendungen verwenden können.</p></"
-"body></html>"
-
-#. i18n: tag string
-#. i18n: file /home/david/projects/gtk-qt/trunk/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 94
-#: rc.cpp:21
+#: kcmgtkwidget.cpp:195
 msgid "Gtk-Qt theme engine homepage"
 msgstr "Homepage der Gtk-Qt-Theme-Engine"
 
-#. i18n: tag string
-#. i18n: file /home/david/projects/gtk-qt/trunk/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 97
-#: rc.cpp:24
-msgid "http://gtk-qt.ecs.soton.ac.uk"
-msgstr "http://gtk-qt.ecs.soton.ac.uk"
+#: kcmgtkwidget.cpp:196
+msgid "http://gtk-qt.ecs.soton.ac.uk/"
+msgstr "http://gtk-qt.ecs.soton.ac.uk/"
 
-#. i18n: tag string
-#. i18n: file /home/david/projects/gtk-qt/trunk/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 104
-#: rc.cpp:27
-msgid "Change search paths..."
-msgstr "Suchpfade ändern ..."
+#: kcmgtkwidget.cpp:197
+msgid ""
+"<b>Warning:</b> The Gtk-Qt theme engine is not installed.  This means you "
+"will not be able to use your KDE style in GTK applications."
+msgstr "<b>Warnung:</b> Die Gtk-Qt-Theme-Engine ist nicht installiert. Das bedeutet ,dass Ihre KDE-Stile nicht in GTK-Anwendungen verwendet werden können."
 
-#. i18n: tag string
-#. i18n: file /home/david/projects/gtk-qt/trunk/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 127
-#: rc.cpp:30
+#: kcmgtkwidget.cpp:198
 msgid "GTK Fonts"
 msgstr "GTK-Schriftarten"
 
-#. i18n: tag string
-#. i18n: file /home/david/projects/gtk-qt/trunk/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 157
-#: rc.cpp:33
-msgid "Use m&y KDE fonts in GTK applications"
-msgstr "&KDE-Schriftarten in GTK-Anwendungen verwenden"
-
-#. i18n: tag string
-#. i18n: file /home/david/projects/gtk-qt/trunk/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 164
-#: rc.cpp:36
-msgid "Use another font:"
-msgstr "Eine andere Schriftart verwenden:"
-
-#. i18n: tag string
-#. i18n: file /home/david/projects/gtk-qt/trunk/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 171
-#: rc.cpp:39
+#: kcmgtkwidget.cpp:199
 msgid "Change..."
 msgstr "Ändern ..."
 
-#. i18n: tag string
-#. i18n: file /home/david/projects/gtk-qt/trunk/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 198
-#: rc.cpp:42
+#: kcmgtkwidget.cpp:200
+msgid "Use another font:"
+msgstr "Eine andere Schriftart verwenden:"
+
+#: kcmgtkwidget.cpp:201
 msgid "The Quick Brown Fox Jumped Over The Lazy Dog"
 msgstr "Falsches Üben von Xylophonmusik quält jeden größeren Zwerg"
 
-#. i18n: tag string
-#. i18n: file /home/david/projects/gtk-qt/trunk/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 211
-#: rc.cpp:45
+#: kcmgtkwidget.cpp:202
+msgid "Use m&y KDE fonts in GTK applications"
+msgstr "KDE-Schriftarten in GTK-Anwendungen verwenden"
+
+#: kcmgtkwidget.cpp:203
+msgid "Preview line 1"
+msgstr "Vorschauzeile 1"
+
+msgid "GTK Keyboard Shortcuts"
+msgstr "GTK-Tastenkürzel"
+
+msgid "Use Emacs-like key&board shortcuts for text editing"
+msgstr "Emacs-Tastenkürzel zum Editieren von Text verwenden"
+
+#: kcmgtkwidget.cpp:204
 msgid "Firefox and Thunderbird"
 msgstr "Firefox und Thunderbird"
 
-#. i18n: tag string
-#. i18n: file /home/david/projects/gtk-qt/trunk/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 247
-#: rc.cpp:48
+#: kcmgtkwidget.cpp:205
 msgid ""
 "Scrollbar buttons may sometimes be displayed incorrectly in Firefox and "
 "Thunderbird.  This can be fixed by installing some files into your Mozilla "
 "profile."
 msgstr ""
-"Die Knöpfe der Bildlaufleiste werden in Firefox und Thunderbird gelegentlich "
-"falsch dargestellt. Dies kann durch das Installieren einiger Dateien in das "
-"Mozilla-Profilverzeichnis behoben werden."
+"Die Knöpfe der Bildlaufleiste werden in Firefox und Thunderbird gelegentlich falsch dargestellt. Dies kann durch das Installieren einiger Dateien "
+"in das Mozilla-Profilverzeichnis behoben werden."
 
-#. i18n: tag string
-#. i18n: file /home/david/projects/gtk-qt/trunk/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 257
-#: rc.cpp:51
+#: kcmgtkwidget.cpp:206
 msgid "I&nstall scrollbar fix..."
-msgstr "Korrektur für Bildlaufleiste i&nstallieren ..."
+msgstr "Korrektur für Bildlaufleiste installieren ..."
 
-#. i18n: tag string
-#. i18n: file /home/david/projects/gtk-qt/trunk/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 286
-#: rc.cpp:54
-msgid ""
-"Note that changes made here will only affect GTK applications when KDE is "
-"running.  To change the styles and fonts used by applications in GNOME, use "
-"the GNOME configuration tools."
-msgstr ""
-"Beachten Sie, dass die hier durchgeführten Änderungen GTK-Anwendungen nur betreffen, sofern sie "
-"unter KDE ausgeführt werden. Verwenden Sie die Gnome-Einrichtungswerkzeuge, um die Stile und "
-"Schriftarten von Anwendungen in Gnome zu verändern "
+#: mozillaprofile.cpp:38 mozillaprofile.cpp:64
+msgid "Profile"
+msgstr "Profil"
 
-#. i18n: tag string
-#. i18n: file /home/david/projects/gtk-qt/trunk/gtk-qt-engine/po/../kcm_gtk/searchpaths.ui line 13
-#: rc.cpp:57
-msgid "Change search paths"
-msgstr "Suchpfade ändern"
+#: mozillaprofile.cpp:63
+msgid "Please select the profiles that you want to fix:"
+msgstr "Bitte wählen Sie die zu korrigierenden Profile aus:"
 
-#. i18n: tag string
-#. i18n: file /home/david/projects/gtk-qt/trunk/gtk-qt-engine/po/../kcm_gtk/searchpaths.ui line 19
-#: rc.cpp:60
-msgid ""
-"The control center module could not find the GTK-Qt theme engine in its list "
-"of search paths.  If you have installed it elsewhere, you will need to add "
-"the correct path to the list below."
-msgstr ""
-"Das Kontrollzentrum-Modul konnte die GTK-Qt-Theme-Engine nicht in der Liste der Suchpfade finden. "
-"Wenn Sie sie an einem anderen Ort installiert haben, müssen Sie den korrekten Pfad der Liste "
-"hinzufügen."
-
-#. i18n: tag string
-#. i18n: file /home/david/projects/gtk-qt/trunk/gtk-qt-engine/po/../kcm_gtk/searchpaths.ui line 43
-#: rc.cpp:63
-msgid "Add"
-msgstr "Hinzufügen"
-
-#. i18n: tag string
-#. i18n: file /home/david/projects/gtk-qt/trunk/gtk-qt-engine/po/../kcm_gtk/searchpaths.ui line 56
-#: rc.cpp:66
-msgid "Remove"
-msgstr "Entfernen"
-
-#: ../kcm_gtk/kcmgtk.cpp:71
-msgid "kcm_gtk4"
-msgstr "kcm_gtk4"
-
-#: ../kcm_gtk/kcmgtk.cpp:74
-msgid "Change the appearance of GTK applications"
-msgstr "Das Erscheinungsbild von GTK-Anwednungen ändern"
-
-#: ../kcm_gtk/kcmgtk.cpp:109
-msgid "%1 (size %2)"
-msgstr "%1 (Größe %2)"
-
-#: ../kcm_gtk/firefoxfix.cpp:48
-msgid "No Mozilla profiles found"
-msgstr "Keine Mozilla-Profile gefunden"
-
-#: ../kcm_gtk/firefoxfix.cpp:48
-msgid "Could not load Mozilla profiles"
-msgstr "Die Mozilla-Profile konnten nicht geladen werden"
-
-#: ../kcm_gtk/firefoxfix.cpp:55
-msgid ""
-"Your Mozilla profile was updated sucessfully.  You must close and restart "
-"all Firefox and Thunderbird windows for the changes to take effect"
-msgstr ""
-"Das Mozilla-Profil wurde erfolgreich aktualisiert. Alle laufenden Firefox- "
-"und Thunderbird-Fenster müssen geschlossen und neu geöffnet werden, um die "
-"Änderungen zu übernehmen."
-
-#: ../kcm_gtk/firefoxfix.cpp:55 ../kcm_gtk/firefoxfix.cpp:191
-msgid "Mozilla profile"
-msgstr "Mozilla-Profil"
-
-#: ../kcm_gtk/firefoxfix.cpp:191
-msgid "Could not write to %1"
-msgstr "%1 ließ sich nicht schreiben"
-
-#~ msgid ""
-#~ "_: NAME OF TRANSLATORS\n"
-#~ "Your names"
-#~ msgstr "Sebastian Roth, Jannick Kuhr"
-
-#~ msgid ""
-#~ "_: EMAIL OF TRANSLATORS\n"
-#~ "Your emails"
-#~ msgstr "sebastian.roth@frm2.tum.de, jannick.kuhr@kdemail.net"
-
-#~ msgid "Thunderbird"
-#~ msgstr "Thunderbird"
-
-#~ msgid "Firefox"
-#~ msgstr "Firefox"
-
-#~ msgid "Form2"
-#~ msgstr "Form2"
-
-#~ msgid ""
-#~ "<b>Warning:</b> The Gtk-Qt theme engine is not installed.  This means you "
-#~ "will not be able to use your KDE style in GTK applications."
-#~ msgstr ""
-#~ "<b>Warnung:</b> Die Gtk-Qt-Theme-Engine ist nicht installiert. Das "
-#~ "bedeutet ,dass Ihre KDE-Stile nicht in GTK-Anwendungen verwendet werden "
-#~ "können."
-
-#~ msgid "Preview line 1"
-#~ msgstr "Vorschauzeile 1"
-
-#~ msgid "GTK Keyboard Shortcuts"
-#~ msgstr "GTK-Tastenkürzel"
-
-#~ msgid "Use Emacs-like key&board shortcuts for text editing"
-#~ msgstr "Emacs-Tastenkürzel zum Editieren von Text verwenden"
-
-#~ msgid "Profile"
-#~ msgstr "Profil"
-
-#~ msgid "Please select the profiles that you want to fix:"
-#~ msgstr "Bitte wählen Sie die zu korrigierenden Profile aus:"
 

@@ -1,6 +1,6 @@
 style "default"
 {
-  engine "qt4engine"
+  engine "qtengine"
   {
   }
 }

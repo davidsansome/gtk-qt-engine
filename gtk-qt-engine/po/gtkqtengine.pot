@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-03 10:54+0100\n"
+"POT-Creation-Date: 2007-10-08 11:28+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,181 +15,358 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#. i18n: tag string
-#. i18n: file /home/david/projects/gtk-qt/trunk/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 13
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/emacsdetails.ui line 16
 #: rc.cpp:3
-msgid "Dialog"
+#, no-c-format
+msgid "Emacs Keyboard Shortcuts"
 msgstr ""
 
-#. i18n: tag string
-#. i18n: file /home/david/projects/gtk-qt/trunk/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 19
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/emacsdetails.ui line 28
 #: rc.cpp:6
+#, no-c-format
+msgid ""
+"These keyboard shortcuts are useful for Emacs users.\n"
+"When enabled, they will override the standard keyboard shortcuts in GTK "
+"applications."
+msgstr ""
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/emacsdetails.ui line 34
+#: rc.cpp:10
+#, no-c-format
+msgid "Shortcut"
+msgstr ""
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/emacsdetails.ui line 45
+#: rc.cpp:13
+#, no-c-format
+msgid "Description"
+msgstr ""
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/emacsdetails.ui line 56
+#: rc.cpp:16
+#, no-c-format
+msgid "Ctrl+A"
+msgstr ""
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/emacsdetails.ui line 59
+#: rc.cpp:19
+#, no-c-format
+msgid "Go to beginning of line"
+msgstr ""
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/emacsdetails.ui line 70
+#: rc.cpp:22
+#, no-c-format
+msgid "Ctrl+E"
+msgstr ""
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/emacsdetails.ui line 73
+#: rc.cpp:25
+#, no-c-format
+msgid "Go to end of line"
+msgstr ""
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/emacsdetails.ui line 84
+#: rc.cpp:28
+#, no-c-format
+msgid "Ctrl+F"
+msgstr ""
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/emacsdetails.ui line 87
+#: rc.cpp:31
+#, no-c-format
+msgid "Go right one character"
+msgstr ""
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/emacsdetails.ui line 98
+#: rc.cpp:34
+#, no-c-format
+msgid "Ctrl+B"
+msgstr ""
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/emacsdetails.ui line 101
+#: rc.cpp:37
+#, no-c-format
+msgid "Go left one character"
+msgstr ""
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/emacsdetails.ui line 112
+#: rc.cpp:40
+#, no-c-format
+msgid "Ctrl+K"
+msgstr ""
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/emacsdetails.ui line 115
+#: rc.cpp:43
+#, no-c-format
+msgid "Delete to end of line"
+msgstr ""
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/emacsdetails.ui line 126
+#: rc.cpp:46
+#, no-c-format
+msgid "Ctrl+U"
+msgstr ""
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/emacsdetails.ui line 129
+#: rc.cpp:49
+#, no-c-format
+msgid "Delete entire line"
+msgstr ""
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/emacsdetails.ui line 140
+#: rc.cpp:52
+#, no-c-format
+msgid "Ctrl+W"
+msgstr ""
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/emacsdetails.ui line 143
+#: rc.cpp:55
+#, no-c-format
+msgid "Delete word, left"
+msgstr ""
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/emacsdetails.ui line 154
+#: rc.cpp:58
+#, no-c-format
+msgid "Ctrl+H"
+msgstr ""
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/emacsdetails.ui line 157
+#: rc.cpp:61
+#, no-c-format
+msgid "Delete character, left"
+msgstr ""
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/emacsdetails.ui line 168
+#: rc.cpp:64
+#, no-c-format
+msgid "Ctrl+D"
+msgstr ""
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/emacsdetails.ui line 171
+#: rc.cpp:67
+#, no-c-format
+msgid "Delete character, right"
+msgstr ""
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/emacsdetails.ui line 217
+#: rc.cpp:70
+#, no-c-format
+msgid "C&lose"
+msgstr ""
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 16
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/mozillaprofile.ui line 16
+#: rc.cpp:73 rc.cpp:161
+#, no-c-format
+msgid "Form2"
+msgstr ""
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 38
+#: rc.cpp:76
+#, no-c-format
 msgid "GTK Styles"
 msgstr ""
 
-#. i18n: tag string
-#. i18n: file /home/david/projects/gtk-qt/trunk/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 45
-#: rc.cpp:9
-msgid "&Use my KDE style in GTK applications"
-msgstr ""
-
-#. i18n: tag string
-#. i18n: file /home/david/projects/gtk-qt/trunk/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 52
-#: rc.cpp:12
-msgid "Use &another style:"
-msgstr ""
-
-#. i18n: tag string
-#. i18n: file /home/david/projects/gtk-qt/trunk/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 84
-#: rc.cpp:15
-msgid ""
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css"
-"\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Sans Serif'; font-size:10pt; font-"
-"weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-"
-"weight:600;\">Warning:</span> The Gtk-Qt theme engine is not installed. This "
-"means you will not be able to use your KDE style in GTK applications.</p></"
-"body></html>"
-msgstr ""
-
-#. i18n: tag string
-#. i18n: file /home/david/projects/gtk-qt/trunk/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 94
-#: rc.cpp:21
-msgid "Gtk-Qt theme engine homepage"
-msgstr ""
-
-#. i18n: tag string
-#. i18n: file /home/david/projects/gtk-qt/trunk/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 97
-#: rc.cpp:24
-msgid "http://gtk-qt.ecs.soton.ac.uk"
-msgstr ""
-
-#. i18n: tag string
-#. i18n: file /home/david/projects/gtk-qt/trunk/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 104
-#: rc.cpp:27
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 117
+#: rc.cpp:79
+#, no-c-format
 msgid "Change search paths..."
 msgstr ""
 
-#. i18n: tag string
-#. i18n: file /home/david/projects/gtk-qt/trunk/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 127
-#: rc.cpp:30
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 144
+#: rc.cpp:82
+#, no-c-format
+msgid "&Use my KDE style in GTK applications"
+msgstr ""
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 168
+#: rc.cpp:85
+#, no-c-format
+msgid "Use &another style:"
+msgstr ""
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 179
+#: rc.cpp:88
+#, no-c-format
+msgid ""
+"<b>Warning:</b> The Gtk-Qt theme engine is not installed.  This means you "
+"will not be able to use your KDE style in GTK applications."
+msgstr ""
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 187
+#: rc.cpp:91
+#, no-c-format
+msgid "Gtk-Qt theme engine homepage"
+msgstr ""
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 190
+#: rc.cpp:94
+#, no-c-format
+msgid "http://gtk-qt.ecs.soton.ac.uk/"
+msgstr ""
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 210
+#: rc.cpp:97
+#, no-c-format
 msgid "GTK Fonts"
 msgstr ""
 
-#. i18n: tag string
-#. i18n: file /home/david/projects/gtk-qt/trunk/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 157
-#: rc.cpp:33
-msgid "Use m&y KDE fonts in GTK applications"
-msgstr ""
-
-#. i18n: tag string
-#. i18n: file /home/david/projects/gtk-qt/trunk/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 164
-#: rc.cpp:36
-msgid "Use another font:"
-msgstr ""
-
-#. i18n: tag string
-#. i18n: file /home/david/projects/gtk-qt/trunk/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 171
-#: rc.cpp:39
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 264
+#: rc.cpp:100
+#, no-c-format
 msgid "Change..."
 msgstr ""
 
-#. i18n: tag string
-#. i18n: file /home/david/projects/gtk-qt/trunk/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 198
-#: rc.cpp:42
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 289
+#: rc.cpp:103
+#, no-c-format
+msgid "Use another font:"
+msgstr ""
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 322
+#: rc.cpp:106
+#, no-c-format
 msgid "The Quick Brown Fox Jumped Over The Lazy Dog"
 msgstr ""
 
-#. i18n: tag string
-#. i18n: file /home/david/projects/gtk-qt/trunk/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 211
-#: rc.cpp:45
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 332
+#: rc.cpp:109
+#, no-c-format
+msgid "Use m&y KDE fonts in GTK applications"
+msgstr ""
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 335
+#: rc.cpp:112
+#, no-c-format
+msgid "Alt+Y"
+msgstr ""
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 368
+#: rc.cpp:115
+#, no-c-format
+msgid "Preview line 1"
+msgstr ""
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 385
+#: rc.cpp:118
+#, no-c-format
+msgid "GTK Keyboard Shortcuts"
+msgstr ""
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 439
+#: rc.cpp:122
+#, no-c-format
+msgid "Use Emacs-like key&board shortcuts for text editing"
+msgstr ""
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 442
+#: rc.cpp:125
+#, no-c-format
+msgid "Alt+B"
+msgstr ""
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 458
+#: rc.cpp:128
+#, no-c-format
+msgid "Details..."
+msgstr ""
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 497
+#: rc.cpp:131
+#, no-c-format
 msgid "Firefox and Thunderbird"
 msgstr ""
 
-#. i18n: tag string
-#. i18n: file /home/david/projects/gtk-qt/trunk/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 247
-#: rc.cpp:48
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 551
+#: rc.cpp:134
+#, no-c-format
 msgid ""
 "Scrollbar buttons may sometimes be displayed incorrectly in Firefox and "
 "Thunderbird.  This can be fixed by installing some files into your Mozilla "
 "profile."
 msgstr ""
 
-#. i18n: tag string
-#. i18n: file /home/david/projects/gtk-qt/trunk/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 257
-#: rc.cpp:51
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 570
+#: rc.cpp:137
+#, no-c-format
 msgid "I&nstall scrollbar fix..."
 msgstr ""
 
-#. i18n: tag string
-#. i18n: file /home/david/projects/gtk-qt/trunk/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 286
-#: rc.cpp:54
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 601
+#: rc.cpp:140
+#, no-c-format
 msgid ""
 "Note that changes made here will only affect GTK applications when KDE is "
 "running.  To change the styles and fonts used by applications in GNOME, use "
 "the GNOME configuration tools."
 msgstr ""
 
-#. i18n: tag string
-#. i18n: file /home/david/projects/gtk-qt/trunk/gtk-qt-engine/po/../kcm_gtk/searchpaths.ui line 13
-#: rc.cpp:57
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/searchpaths.ui line 16
+#: rc.cpp:143
+#, no-c-format
 msgid "Change search paths"
 msgstr ""
 
-#. i18n: tag string
-#. i18n: file /home/david/projects/gtk-qt/trunk/gtk-qt-engine/po/../kcm_gtk/searchpaths.ui line 19
-#: rc.cpp:60
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/searchpaths.ui line 27
+#: rc.cpp:146
+#, no-c-format
 msgid ""
 "The control center module could not find the GTK-Qt theme engine in its list "
 "of search paths.  If you have installed it elsewhere, you will need to add "
 "the correct path to the list below."
 msgstr ""
 
-#. i18n: tag string
-#. i18n: file /home/david/projects/gtk-qt/trunk/gtk-qt-engine/po/../kcm_gtk/searchpaths.ui line 43
-#: rc.cpp:63
-msgid "Add"
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/searchpaths.ui line 122
+#: rc.cpp:155
+#, no-c-format
+msgid "Ok"
 msgstr ""
 
-#. i18n: tag string
-#. i18n: file /home/david/projects/gtk-qt/trunk/gtk-qt-engine/po/../kcm_gtk/searchpaths.ui line 56
-#: rc.cpp:66
-msgid "Remove"
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/mozillaprofile.ui line 38
+#: rc.cpp:164
+#, no-c-format
+msgid "Please select the profiles that you want to fix:"
 msgstr ""
 
-#: ../kcm_gtk/kcmgtk.cpp:71
-msgid "kcm_gtk4"
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/mozillaprofile.ui line 44
+#: rc.cpp:167
+#, no-c-format
+msgid "Profile"
 msgstr ""
 
-#: ../kcm_gtk/kcmgtk.cpp:74
-msgid "Change the appearance of GTK applications"
-msgstr ""
-
-#: ../kcm_gtk/kcmgtk.cpp:109
+#: ../kcm_gtk/kcmgtk.cpp:271
 msgid "%1 (size %2)"
 msgstr ""
 
-#: ../kcm_gtk/firefoxfix.cpp:48
+#: ../kcm_gtk/kcmgtk.cpp:466
 msgid "No Mozilla profiles found"
 msgstr ""
 
-#: ../kcm_gtk/firefoxfix.cpp:48
+#: ../kcm_gtk/kcmgtk.cpp:466
 msgid "Could not load Mozilla profiles"
 msgstr ""
 
-#: ../kcm_gtk/firefoxfix.cpp:55
+#: ../kcm_gtk/kcmgtk.cpp:475 ../kcm_gtk/kcmgtk.cpp:508
+#: ../kcm_gtk/kcmgtk.cpp:630
+msgid "Mozilla profile"
+msgstr ""
+
+#: ../kcm_gtk/kcmgtk.cpp:508
 msgid ""
 "Your Mozilla profile was updated sucessfully.  You must close and restart "
 "all Firefox and Thunderbird windows for the changes to take effect"
 msgstr ""
 
-#: ../kcm_gtk/firefoxfix.cpp:55 ../kcm_gtk/firefoxfix.cpp:191
-msgid "Mozilla profile"
+#: ../kcm_gtk/kcmgtk.cpp:525
+msgid "Thunderbird"
 msgstr ""
 
-#: ../kcm_gtk/firefoxfix.cpp:191
+#: ../kcm_gtk/kcmgtk.cpp:525
+msgid "Firefox"
+msgstr ""
+
+#: ../kcm_gtk/kcmgtk.cpp:630
 msgid "Could not write to %1"
 msgstr ""

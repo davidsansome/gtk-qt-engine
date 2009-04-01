@@ -1,26 +1,6 @@
-/***************************************************************************
- *   Copyright (C) 2008 by David Sansome                                   *
- *   me@davidsansome.com                                                   *
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- *   This program is distributed in the hope that it will be useful,       *
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
- *   GNU General Public License for more details.                          *
- *                                                                         *
- *   You should have received a copy of the GNU General Public License     *
- *   along with this program; if not, write to the                         *
- *   Free Software Foundation, Inc.,                                       *
- *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
- ***************************************************************************/
-
 #include "qt_rc_style.h"
 #include "qt_style.h"
-#include "wrapper.h"
+#include "qt_qt_wrapper.h"
 
 
 
@@ -54,7 +34,7 @@ void qtengine_rc_style_register_type (GTypeModule *module)
 		0,              /* n_preallocs */
 		(GInstanceInitFunc) qtengine_rc_style_init,
 	};
-	
+  
 	qtengine_type_rc_style = g_type_module_register_type (module, GTK_TYPE_RC_STYLE, "QtEngineRcStyle", &object_info, 0);
 }
 
@@ -83,6 +63,9 @@ qtengine_rc_style_parse (GtkRcStyle *rc_style, GtkSettings *settings, GScanner *
 	static GQuark       scope_id = 0;
 	guint               old_scope;
 	guint               token;
+	
+	/* Sets Rc properties from QT settings */
+	setRcProperties(rc_style, 0);
 	
 	/* The rest of this keeps GTK happy - therefore I don't care what it does */
 	if (!scope_id)
