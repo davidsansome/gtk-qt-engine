@@ -1,0 +1,182 @@
+# Translation of it to Italian
+# This file is put in the public domain.
+# Davide Madrisan <davide.madrisan@qilinux.it>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: it\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2005-02-12 20:48+0000\n"
+"PO-Revision-Date: 2007-01-18 20:12+0100\n"
+"Last-Translator: Davide Madrisan <davide.madrisan@gmail.com>\n"
+"Language-Team: Italian <it@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: _translatorinfo.cpp:1
+msgid ""
+"_: NAME OF TRANSLATORS\n"
+"Your names"
+msgstr "Davide Madrisan"
+
+#: _translatorinfo.cpp:3
+msgid ""
+"_: EMAIL OF TRANSLATORS\n"
+"Your emails"
+"davide.madrisan@gmail.com"
+msgstr ""
+
+#: kcmgtk.cpp:206
+msgid "%1 (size %2)"
+msgstr "%1 (dimensione %2)"
+
+#: kcmgtk.cpp:351
+msgid "No Mozilla profiles found"
+msgstr "Non è stato trovato alcun profilo di Mozilla"
+
+#: kcmgtk.cpp:351
+msgid "Could not load Mozilla profiles"
+msgstr "Impossibile caricare i profili di Mozilla"
+
+#: kcmgtk.cpp:363 kcmgtk.cpp:407 kcmgtk.cpp:524
+msgid "Mozilla profile"
+msgstr "Profilo di Mozilla"
+
+#: kcmgtk.cpp:378
+msgid "Thunderbird"
+msgstr "Thunderbird"
+
+#: kcmgtk.cpp:378
+msgid "Firefox"
+msgstr "Firefox"
+
+#: kcmgtk.cpp:407
+msgid ""
+"Your Mozilla profile was updated sucessfully.  You must close and restart "
+"all Firefox and Thunderbird windows for the changes to take effect"
+msgstr ""
+"Il profilo personale di Mozilla è stato aggiornato con successo.  Occorre "
+"chiudere tutte le finestre attive di Mozilla e Thunderbird.  Le modifiche "
+"avranno effetto dal prossimo avvio di questi applicativi."
+
+#: kcmgtk.cpp:524
+msgid "Could not write to %1"
+msgstr "Impossibile scrivere in %1"
+
+#: kcmgtk.cpp
+msgid "Restart KDE"
+msgstr "Riavviare KDE"
+
+#: kcmgtk.cpp
+msgid "Your changes have been saved, but you will have to restart KDE for "
+"them to take effect."
+msgstr "Le modifiche sono state salvate ma occorre riavviare KDE affinchè "
+"esse abbiano effetto."
+
+#: kcmgtkwidget.cpp:191 mozillaprofile.cpp:62
+msgid "Form2"
+msgstr ""
+
+#: kcmgtkwidget.cpp:192
+msgid "GTK Styles"
+msgstr "Stili GTK"
+
+#: kcmgtkwidget.cpp:193
+msgid "&Use my KDE style in GTK applications"
+msgstr "Utilizza lo stile KDE nelle applicazioni GTK"
+
+#: kcmgtkwidget.cpp:194
+msgid "Use &another style:"
+msgstr "Utilizza un altro stile:"
+
+#: kcmgtkwidget.cpp:195
+msgid "Gtk-Qt theme engine homepage"
+msgstr "Homepage del motore di temi Gtk-Qt"
+
+#: kcmgtkwidget.cpp:196
+msgid "http://www.freedesktop.org/wiki/Software_2fgtk_2dqt"
+msgstr ""
+
+#: kcmgtkwidget.cpp:197
+msgid ""
+"<b>Warning:</b> The Gtk-Qt theme engine is not installed.  This means you "
+"will not be able to use your KDE style in GTK applications."
+msgstr ""
+"<b>Warning:</b> Il motore di temi Gtk-Qt non è installato.  Non sarà "
+"possibile applicare lo stile KDE alle applicazioni GTK."
+
+#: kcmgtkwidget.cpp:198
+msgid "GTK Fonts"
+msgstr "Caratteri GTK"
+
+#: kcmgtkwidget.cpp:199
+msgid "Change..."
+msgstr "Modifica..."
+
+#: kcmgtkwidget.cpp:200
+msgid "Use another font:"
+msgstr "Utilizza un altro tipo di carattere:"
+
+#: kcmgtkwidget.cpp:201
+msgid "The Quick Brown Fox Jumped Over The Lazy Dog"
+msgstr "Ma La Volpe Col Suo Balzo Ha Raggiunto Il Quieto Fido"
+
+#: kcmgtkwidget.cpp:202
+msgid "Use m&y KDE fonts in GTK applications"
+msgstr "Utilizza i caratteri di KDE nelle applicazioni GTK"
+
+#: kcmgtkwidget.cpp:203
+msgid "Preview line 1"
+msgstr "Anteprima della linea 1"
+
+#: kcmgtkwidget.cpp:204
+msgid "Firefox and Thunderbird"
+msgstr "Firefox e Thunderbird"
+
+#: kcmgtkwidget.cpp:205
+msgid ""
+"Scrollbar buttons may sometimes be displayed incorrectly in Firefox and "
+"Thunderbird.  This can be fixed by installing some files into your Mozilla "
+"profile."
+msgstr ""
+"I pulsanti della barra di scorrimento talvolta vengono visualizzati in modo "
+"scorretto in Firefox e Thunderbird.  Questo problema può essere corretto "
+"installando alcuni file nel tuo profilo personale di Mozilla."
+
+#: kcmgtkwidget.cpp:206
+msgid "I&nstall scrollbar fix..."
+msgstr "Installare la correzione della barra di scorrimento..."
+
+#: mozillaprofile.cpp:38 mozillaprofile.cpp:64
+msgid "Profile"
+msgstr "Profilo"
+
+#: mozillaprofile.cpp:63
+msgid "Please select the profiles that you want to fix:"
+msgstr "Selezionare i profili che si desidera correggere:"
+
+#: kcmgtkwidget.ui
+msgid "Details..."
+msgstr "Dettagli..."
+
+#: kcmgtkwidget.ui
+msgid "GTK Keyboard Shortcuts"
+msgstr "Scorciatoie della tastiera GTK"
+
+#: kcmgtkwidget.ui
+msgid "Use Emacs-like key&board shortcuts for text editing"
+msgstr "Utilizzare le scorciatoie della tastiera in stile Emacs per la modifica del testo"
+
+#: kcmgtkwidget.ui
+msgid "Note that changes made here will only affect GTK applications when "
+"KDE is running.  To change the styles and fonts used by applications in "
+"GNOME, use the GNOME configuration tools."
+msgstr "Si noti che le modifiche effettuate avranno effetto solo sulle "
+"applicazioni GTK eseguite in ambiente KDE.  Per cambiare gli stili ed i "
+"caratteri utilizzati dalle applicazioni in GNOME, utilizzare gli strumenti "
+"di configurazioni forniti da GNOME."
+
+#: emacsdetails.ui
+msgid "Emacs Keyboard Shortcuts"
+msgstr "Scorciatoie Emacs della tastiera"

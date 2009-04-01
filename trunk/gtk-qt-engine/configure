@@ -1,0 +1,15 @@
+#!/bin/sh
+
+echo "Warning: The GTK-Qt Theme Engine now uses cmake instead of ./configure."
+echo
+
+cmakepath=`which cmake 2>/dev/null`
+if [ "$?" -eq "1" ]; then
+	echo "cmake was not found on your system."
+	echo "Please download cmake from http://www.cmake.org and ensure it is in your \$PATH"
+	exit 1
+fi
+
+echo "Found cmake in $cmakepath, executing it for you..."
+
+cmake .

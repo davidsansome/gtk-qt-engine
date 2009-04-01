@@ -1,0 +1,12 @@
+Changes since 0.8:
+Improvements:
+* Ensure menuitems are always as high as icons
+
+Bugfixes:
+
+Buildsystem changes:
+
+i18n:
+Updated .pot
+Included Czech translation by David Watzke
+Included Italian translation by Davide Madrisan

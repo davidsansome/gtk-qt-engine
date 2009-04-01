@@ -1,0 +1,96 @@
+# -*-shell-script-*-
+
+[Meta]
+RootName: @freedesktop.org/gtkqtengine:$SOFTWAREVERSION
+DisplayName: Gtk-Qt theme engine
+ShortName: gtk-qt-engine
+Maintainer: David Sansome <me@davidsansome.com>
+Packager: David Sansome <me@davidsansome.com>
+Summary: A GTK theme engine that mimics the active Qt style
+SoftwareVersion: 0.8
+InterfaceVersion: 0
+AutopackageTarget: 1.2
+Repository: http://gtk-qt.ecs.soton.ac.uk/files/$SOFTWAREVERSION/$SHORTNAME.xml
+
+[BuildPrepare]
+arg1="INSTALL_PATH_GTK_ENGINES:PATH=$build_root/lib/gtk-2.0/2.4.0/engines"
+arg2="INSTALL_PATH_GTK_THEMES:PATH=$build_root/share/themes"
+arg3="INSTALL_PATH_KCONTROL_MODULES:PATH=$build_root/lib"
+arg4="CMAKE_INSTALL_PREFIX:PATH=$build_root"
+
+export APBUILD_STATIC="Xrender"
+export CC=`which apgcc`
+export CXX=`which apg++`
+
+if [[ "$APKG_BUILD_SKIP_CONFIGURE" != "1" ]]; then
+	out "$intl_CONFIGURING"
+	
+	rm CMakeCache.txt
+	cmake -D $arg1 -D $arg2 -D $arg3 -D $arg4 .
+	
+	if [[ "$?" == "0" ]]; then
+		outn "$intl_CONFIGURING"; green; out "$intl_DONE"; normal;
+	else
+		outn "$intl_CONFIGURING"; red; echo "$intl_FAILED"; normal;
+		exit 1;
+	fi
+fi
+
+if [[ "$APKG_BUILD_SKIP_MAKE" != "1" ]]; then
+	out "$intl_MAKING";
+	
+	make clean
+	make
+	
+	if [[ "$?" == "0" ]]; then
+		outn "$intl_MAKING"; green; out "$intl_DONE"; normal;
+	else
+		outn "$intl_MAKING"; red; echo "$intl_FAILED"; normal;
+		exit 1;
+	fi
+fi
+
+
+out "$intl_INSTALLING" "$build_root";
+make install
+if [[ "$?" == "0" ]]; then
+	outn "$intl_INSTALLING"; green; out "$intl_DONE"; normal;
+else
+	outn "$intl_INSTALLING"; red; echo "$intl_FAILED"; normal;
+	exit 1;
+fi
+
+
+export _virtual_build_root="$build_root"
+
+[BuildUnprepare]
+unprepareBuild
+
+[Imports]
+echo '*' | import
+
+[Prepare]
+require @kde.org/kdelibs 3.1
+require @gtk.org/gtk 2
+removeOwningPackage $PREFIX/lib/gtk-2.0/engines/libqtengine.so
+
+[Install]
+outputStatus "Installing theme engine library..."
+mkdirs "$PREFIX/lib/gtk-2.0/engines/"
+copyFile --silent lib/gtk-2.0/2.4.0/engines/libqtengine.so "$PREFIX/lib/gtk-2.0/engines/libqtengine.so"
+
+outputStatus "Installing theme..."
+mkdirs "$PREFIX/share/themes/Qt/gtk-2.0"
+copyFile --silent share/themes/Qt/gtk-2.0/gtkrc "$PREFIX/share/themes/Qt/gtk-2.0/gtkrc"
+
+outputStatus "Installing KDE control center module..."
+mkdirs "$PREFIX/lib/kde3"
+copyFile --silent lib/kde3/kcm_kcmgtk.so "$PREFIX/lib/kde3/kcm_kcmgtk.so"
+copyFile --silent lib/kde3/kcm_kcmgtk.la "$PREFIX/lib/kde3/kcm_kcmgtk.la"
+installMenuItem --no-path-adjust "Settings/LookNFeel" "share/applications/kcmgtk.desktop"
+
+updateEnv GTK_PATH "$PREFIX/lib/gtk-2.0"
+updateEnv KDEDIRS "$PREFIX"
+
+[Uninstall]
+uninstallFromLog

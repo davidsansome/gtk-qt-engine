@@ -1,0 +1,23 @@
+Changes since 1.1
+
+Improvements:
+ * Set the environment variable GTK_QT_ENGINE_ACTIVE.  Style developers can
+ check for the presence of this variable to change their behaviour depending
+ on whether the their theme is being used by GTK.
+ * Use KDE4's tooltip colors properly
+ * Patch from Thomas Lübking - improve colors in Bespin
+
+Bug fixes:
+ * Fix a divide by 0 exception in styles where there are no scrollbar buttons
+ (cloudcity)
+ * Fix a crash in Firefox's open file dialog
+
+i18n:
+ * Korean translation by Park Shinjo
+ * Chinese Simplified translation by nihui
+ * Brazilian portuguese translation by Gustavo Serra Scalet
+ * Updated German translation from Jannick Kuhr
+ * Romanian translation by Sergiu Bivol
+ * Lithuanian translation by Donatas Glodenis
+ * Dutch translation by Verstraete Kenny
+ * Ukrainian translation by Yuri Chornoivan

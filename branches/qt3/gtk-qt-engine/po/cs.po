@@ -1,0 +1,362 @@
+# Czech Gtk-Qt theme engine translation.
+# This file is put in the public domain.
+# David Watzke <david@watzke.cz>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gtk-qt-engine 0.8\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2006-10-16 17:27+0100\n"
+"PO-Revision-Date: 2007-10-08 17:59+0100\n"
+"Last-Translator: David Watzke <david@watzke.cz>\n"
+"Language-Team: Czech <cs@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/emacsdetails.ui line 16
+#: rc.cpp:3
+#, no-c-format
+msgid "Emacs Keyboard Shortcuts"
+msgstr "Klávesové zkratky Emacsu"
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/emacsdetails.ui line 28
+#: rc.cpp:6
+#, no-c-format
+msgid ""
+"These keyboard shortcuts are useful for Emacs users.\n"
+"When enabled, they will override the standard keyboard shortcuts in GTK applications."
+msgstr ""
+"Tyto klávesové zkratky jsou užitečné pro uživatele Emacsu.\n"
+"Když je povolíte, použijí se místo výchozích klávesových zkratek v GTK aplikacích."
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/emacsdetails.ui line 34
+#: rc.cpp:10
+#, no-c-format
+msgid "Shortcut"
+msgstr "Zkratka"
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/emacsdetails.ui line 45
+#: rc.cpp:13
+#, no-c-format
+msgid "Description"
+msgstr "Popis"
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/emacsdetails.ui line 56
+#: rc.cpp:16
+#, no-c-format
+msgid "Ctrl+A"
+msgstr "Ctrl+A"
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/emacsdetails.ui line 59
+#: rc.cpp:19
+#, no-c-format
+msgid "Go to beginning of line"
+msgstr "Přejít na začátek řádku"
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/emacsdetails.ui line 70
+#: rc.cpp:22
+#, no-c-format
+msgid "Ctrl+E"
+msgstr "Ctrl+E"
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/emacsdetails.ui line 73
+#: rc.cpp:25
+#, no-c-format
+msgid "Go to end of line"
+msgstr "Přejít na konec řádku"
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/emacsdetails.ui line 84
+#: rc.cpp:28
+#, no-c-format
+msgid "Ctrl+F"
+msgstr "Ctrl+F"
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/emacsdetails.ui line 87
+#: rc.cpp:31
+#, no-c-format
+msgid "Go right one character"
+msgstr "Přejít o jeden znak vpravo"
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/emacsdetails.ui line 98
+#: rc.cpp:34
+#, no-c-format
+msgid "Ctrl+B"
+msgstr "Ctrl+B"
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/emacsdetails.ui line 101
+#: rc.cpp:37
+#, no-c-format
+msgid "Go left one character"
+msgstr "Přejít o jeden znak vlevo"
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/emacsdetails.ui line 112
+#: rc.cpp:40
+#, no-c-format
+msgid "Ctrl+K"
+msgstr "Ctrl+K"
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/emacsdetails.ui line 115
+#: rc.cpp:43
+#, no-c-format
+msgid "Delete to end of line"
+msgstr "Smazat do konce řádku"
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/emacsdetails.ui line 126
+#: rc.cpp:46
+#, no-c-format
+msgid "Ctrl+U"
+msgstr "Ctrl+U"
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/emacsdetails.ui line 129
+#: rc.cpp:49
+#, no-c-format
+msgid "Delete entire line"
+msgstr "Smazat celý řádek"
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/emacsdetails.ui line 140
+#: rc.cpp:52
+#, no-c-format
+msgid "Ctrl+W"
+msgstr "Ctrl+W"
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/emacsdetails.ui line 143
+#: rc.cpp:55
+#, no-c-format
+msgid "Delete word, left"
+msgstr "Smazat slovo nalevo"
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/emacsdetails.ui line 154
+#: rc.cpp:58
+#, no-c-format
+msgid "Ctrl+H"
+msgstr "Ctrl+H"
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/emacsdetails.ui line 157
+#: rc.cpp:61
+#, no-c-format
+msgid "Delete character, left"
+msgstr "Smazat znak nalevo"
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/emacsdetails.ui line 168
+#: rc.cpp:64
+#, no-c-format
+msgid "Ctrl+D"
+msgstr "Ctrl+D"
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/emacsdetails.ui line 171
+#: rc.cpp:67
+#, no-c-format
+msgid "Delete character, right"
+msgstr "Smazat znak napravo"
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/emacsdetails.ui line 217
+#: rc.cpp:70
+#, no-c-format
+msgid "C&lose"
+msgstr "&Zavřít"
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 16
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/mozillaprofile.ui line 16
+#: rc.cpp:73
+#: rc.cpp:161
+#, no-c-format
+msgid "Form2"
+msgstr "Formulář 2"
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 38
+#: rc.cpp:76
+#, no-c-format
+msgid "GTK Styles"
+msgstr "GTK styly"
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 117
+#: rc.cpp:79
+#, no-c-format
+msgid "Change search paths..."
+msgstr "Změnit vyhledávací cesty..."
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 144
+#: rc.cpp:82
+#, no-c-format
+msgid "&Use my KDE style in GTK applications"
+msgstr "Po&užít můj KDE styl pro GTK aplikace"
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 168
+#: rc.cpp:85
+#, no-c-format
+msgid "Use &another style:"
+msgstr "Použít &jiný styl:"
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 179
+#: rc.cpp:88
+#, no-c-format
+msgid "<b>Warning:</b> The Gtk-Qt theme engine is not installed.  This means you will not be able to use your KDE style in GTK applications."
+msgstr "<b>Varování:</b> Gtk-Qt theme engine není nainstalovaný. To znamená, že nebudete moci používat váš styl KDE v GTK aplikacích."
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 187
+#: rc.cpp:91
+#, no-c-format
+msgid "Gtk-Qt theme engine homepage"
+msgstr "Domovská stránka Gtk-Qt theme engine"
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 190
+#: rc.cpp:94
+#, no-c-format
+msgid "http://gtk-qt.ecs.soton.ac.uk/"
+msgstr "http://gtk-qt.ecs.soton.ac.uk/"
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 210
+#: rc.cpp:97
+#, no-c-format
+msgid "GTK Fonts"
+msgstr "GTK písma"
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 264
+#: rc.cpp:100
+#, no-c-format
+msgid "Change..."
+msgstr "Změnit..."
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 289
+#: rc.cpp:103
+#, no-c-format
+msgid "Use another font:"
+msgstr "Použít jiné písmo:"
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 322
+#: rc.cpp:106
+#, no-c-format
+msgid "The Quick Brown Fox Jumped Over The Lazy Dog"
+msgstr "Žluťoučký kůň úpěl ďábelské ódy"
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 332
+#: rc.cpp:109
+#, no-c-format
+msgid "Use m&y KDE fonts in GTK applications"
+msgstr "Použít moje KDE písma v GTK aplikacích"
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 335
+#: rc.cpp:112
+#, no-c-format
+msgid "Alt+Y"
+msgstr "Alt+Y"
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 368
+#: rc.cpp:115
+#, no-c-format
+msgid "Preview line 1"
+msgstr "Ukázkový řádek 1"
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 385
+#: rc.cpp:118
+#, no-c-format
+msgid "GTK Keyboard Shortcuts"
+msgstr "Klávesové zkratky GTK"
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 439
+#: rc.cpp:122
+#, no-c-format
+msgid "Use Emacs-like key&board shortcuts for text editing"
+msgstr "Použít klávesové zkratky Emacsu pro editaci textu"
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 442
+#: rc.cpp:125
+#, no-c-format
+msgid "Alt+B"
+msgstr "Alt+B"
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 458
+#: rc.cpp:128
+#, no-c-format
+msgid "Details..."
+msgstr "Podrobnosti..."
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 497
+#: rc.cpp:131
+#, no-c-format
+msgid "Firefox and Thunderbird"
+msgstr "Firefox a Thunderbird"
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 551
+#: rc.cpp:134
+#, no-c-format
+msgid "Scrollbar buttons may sometimes be displayed incorrectly in Firefox and Thunderbird.  This can be fixed by installing some files into your Mozilla profile."
+msgstr "Je možné, že se vám tlačítka na posuvnících ve Firefoxu a Thunderbirdu zobrazují nesprávně. Toto lze opravit nainstalováním jistých souborů do Mozilla profilu."
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 570
+#: rc.cpp:137
+#, no-c-format
+msgid "I&nstall scrollbar fix..."
+msgstr "Nai&nstalovat opravu posuvníku..."
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 601
+#: rc.cpp:140
+#, no-c-format
+msgid "Note that changes made here will only affect GTK applications when KDE is running.  To change the styles and fonts used by applications in GNOME, use the GNOME configuration tools."
+msgstr "Změny v tomto nastavení ovlivní pouze GTK aplikace spuštěné z KDE. Pro změnu stylu a písem aplikací v GNOME použijte konfigurační nástroje GNOME."
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/searchpaths.ui line 16
+#: rc.cpp:143
+#, no-c-format
+msgid "Change search paths"
+msgstr "Změnit vyhledávací cesty"
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/searchpaths.ui line 27
+#: rc.cpp:146
+#, no-c-format
+msgid "The control center module could not find the GTK-Qt theme engine in its list of search paths.  If you have installed it elsewhere, you will need to add the correct path to the list below."
+msgstr "Modul ovládacího centra nemohl nalézt GTK-Qt theme engine ve svém seznamu cest pro vyhledávání. Pokud jste jej nainstalovali jinam, níže zadejte správnou cestu."
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/searchpaths.ui line 122
+#: rc.cpp:155
+#, no-c-format
+msgid "Ok"
+msgstr "OK"
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/mozillaprofile.ui line 38
+#: rc.cpp:164
+#, no-c-format
+msgid "Please select the profiles that you want to fix:"
+msgstr "Zvolte profily, které si přejete opravit:"
+
+#. i18n: file /home/david/projects/gtk-qt-engine/po/../kcm_gtk/mozillaprofile.ui line 44
+#: rc.cpp:167
+#, no-c-format
+msgid "Profile"
+msgstr "Profil"
+
+#: ../kcm_gtk/kcmgtk.cpp:271
+msgid "%1 (size %2)"
+msgstr "%1 (velikost %2)"
+
+#: ../kcm_gtk/kcmgtk.cpp:466
+msgid "No Mozilla profiles found"
+msgstr "Žádné profily Mozilly nebyly nalezeny"
+
+#: ../kcm_gtk/kcmgtk.cpp:466
+msgid "Could not load Mozilla profiles"
+msgstr "Nelze načíst profily Mozilly"
+
+#: ../kcm_gtk/kcmgtk.cpp:475
+#: ../kcm_gtk/kcmgtk.cpp:508
+#: ../kcm_gtk/kcmgtk.cpp:630
+msgid "Mozilla profile"
+msgstr "Mozilla profil"
+
+#: ../kcm_gtk/kcmgtk.cpp:508
+msgid "Your Mozilla profile was updated sucessfully.  You must close and restart all Firefox and Thunderbird windows for the changes to take effect"
+msgstr "Váš Mozilla profil byl úspěšně aktualizován. Aby se změny projevily, je třeba ukončit a opětovně spustit Firefox a Thunderbird."
+
+#: ../kcm_gtk/kcmgtk.cpp:525
+msgid "Thunderbird"
+msgstr "Thunderbird"
+
+#: ../kcm_gtk/kcmgtk.cpp:525
+msgid "Firefox"
+msgstr "Firefox"
+
+#: ../kcm_gtk/kcmgtk.cpp:630
+msgid "Could not write to %1"
+msgstr "Nelze zapisovat do %1"
+

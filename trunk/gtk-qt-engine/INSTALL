@@ -1,0 +1,9 @@
+Prerequisites:
+    CMake 2.4
+    Qt 4.3 developement package
+    GTK developement package
+
+To compile, run the following commands:
+    cmake .
+    make
+    sudo make install

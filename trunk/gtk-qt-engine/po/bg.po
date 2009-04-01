@@ -1,0 +1,175 @@
+# translation of bg.po to Bulgarian
+# This file is put in the public domain.
+#
+# Zlatko Popov <zlatkopopov@fsa-bg.org>, 2007.
+msgid ""
+msgstr ""
+"Project-Id-Version: bg\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2006-10-16 17:27+0100\n"
+"PO-Revision-Date: 2007-04-05 16:13+0000\n"
+"Last-Translator: Zlatko Popov <zlatkopopov@fsa-bg.org>\n"
+"Language-Team: Bulgarian <dict@linux.zonebg.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+
+#. i18n: file /mnt/lvm/home/david/projects/cmakestuff/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 16
+#. i18n: file /mnt/lvm/home/david/projects/cmakestuff/gtk-qt-engine/po/../kcm_gtk/mozillaprofile.ui line 16
+#: rc.cpp:3 rc.cpp:54
+#, no-c-format
+msgid "Form2"
+msgstr "Form2"
+
+#. i18n: file /mnt/lvm/home/david/projects/cmakestuff/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 38
+#: rc.cpp:6
+#, no-c-format
+msgid "GTK Styles"
+msgstr "GTK стилове"
+
+#. i18n: file /mnt/lvm/home/david/projects/cmakestuff/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 109
+#: rc.cpp:9
+#, no-c-format
+msgid "&Use my KDE style in GTK applications"
+msgstr "&Използване стила на KDE в GTK приложенията"
+
+#. i18n: file /mnt/lvm/home/david/projects/cmakestuff/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 117
+#: rc.cpp:12
+#, no-c-format
+msgid "Use another style:"
+msgstr "Използване на друг стил:"
+
+#. i18n: file /mnt/lvm/home/david/projects/cmakestuff/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 128
+#: rc.cpp:15
+#, no-c-format
+msgid "Gtk-Qt theme engine homepage"
+msgstr "Интернет страница на Gtk-Qt theme engine"
+
+#. i18n: file /mnt/lvm/home/david/projects/cmakestuff/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 131
+#: rc.cpp:18
+#, no-c-format
+msgid "http://gtk-qt.ecs.soton.ac.uk/"
+msgstr "http://gtk-qt.ecs.soton.ac.uk/"
+
+#. i18n: file /mnt/lvm/home/david/projects/cmakestuff/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 139
+#: rc.cpp:21
+#, no-c-format
+msgid ""
+"<b>Warning:</b> The Gtk-Qt theme engine is not installed.  This means you "
+"will not be able to use your KDE style in GTK applications."
+msgstr "<b>Предупреждение:</b> Не е инсталиран Gtk-Qt theme engine.  Това означава, че не можете да използвате стила на KDE в GTK приложенията."
+
+#. i18n: file /mnt/lvm/home/david/projects/cmakestuff/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 175
+#: rc.cpp:24
+#, no-c-format
+msgid "GTK Fonts"
+msgstr "GTK шрифтове"
+
+#. i18n: file /mnt/lvm/home/david/projects/cmakestuff/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 229
+#: rc.cpp:27
+#, no-c-format
+msgid "Change..."
+msgstr "Промяна..."
+
+#. i18n: file /mnt/lvm/home/david/projects/cmakestuff/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 254
+#: rc.cpp:30
+#, no-c-format
+msgid "Use another font:"
+msgstr "Използване на друг шрифт:"
+
+#. i18n: file /mnt/lvm/home/david/projects/cmakestuff/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 287
+#: rc.cpp:33
+#, no-c-format
+msgid "The Quick Brown Fox Jumped Over The Lazy Dog"
+msgstr "АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЬЮЯабвгдежзийклмнопрстуфхцчшщъьюя"
+
+#. i18n: file /mnt/lvm/home/david/projects/cmakestuff/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 297
+#: rc.cpp:36
+#, no-c-format
+msgid "Use m&y KDE fonts in GTK applications"
+msgstr "Използване шрифтовете на &KDE в GTK приложения"
+
+#. i18n: file /mnt/lvm/home/david/projects/cmakestuff/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 330
+#: rc.cpp:39
+#, no-c-format
+msgid "Preview line 1"
+msgstr "Предварителен преглед 1"
+
+#. i18n: file /mnt/lvm/home/david/projects/cmakestuff/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 355
+#: rc.cpp:42
+#, no-c-format
+msgid "Firefox and Thunderbird"
+msgstr "Firefox и Thunderbird"
+
+#. i18n: file /mnt/lvm/home/david/projects/cmakestuff/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 409
+#: rc.cpp:45
+#, no-c-format
+msgid ""
+"Scrollbar buttons may sometimes be displayed incorrectly in Firefox and "
+"Thunderbird.  This can be fixed by installing some files into your Mozilla "
+"profile."
+msgstr "Възможно е бутоните в лентата за превъртане да не се показват правилно във Firefox и Thunderbird.  Този проблем може да се реши чрез инсталирането на няколко файла в профила на Mozilla."
+
+#. i18n: file /mnt/lvm/home/david/projects/cmakestuff/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 428
+#: rc.cpp:48
+#, no-c-format
+msgid "I&nstall scrollbar fix..."
+msgstr "&Инсталиране на решението..."
+
+#. i18n: file /mnt/lvm/home/david/projects/cmakestuff/gtk-qt-engine/po/../kcm_gtk/kcmgtkwidget.ui line 459
+#: rc.cpp:51
+#, no-c-format
+msgid ""
+"Note that changes made here will only affect GTK applications when KDE is "
+"running.  To change the styles and fonts used by applications in GNOME, use "
+"the GNOME configuration tools."
+msgstr "Имайте предвид, че направените тук промени засягат GTK приложенията само когато KDE е стартирано. За да промените стиловете и шрифтовете на GNOME, използвайте съответните конфигурационни инструменти."
+
+#. i18n: file /mnt/lvm/home/david/projects/cmakestuff/gtk-qt-engine/po/../kcm_gtk/mozillaprofile.ui line 38
+#: rc.cpp:57
+#, no-c-format
+msgid "Please select the profiles that you want to fix:"
+msgstr "Моля, изберете профила, който искате да поправите:"
+
+#. i18n: file /mnt/lvm/home/david/projects/cmakestuff/gtk-qt-engine/po/../kcm_gtk/mozillaprofile.ui line 44
+#: rc.cpp:60
+#, no-c-format
+msgid "Profile"
+msgstr "Профил"
+
+#: ../kcm_gtk/kcmgtk.cpp:212
+msgid "%1 (size %2)"
+msgstr "%1 (размер %2)"
+
+#: ../kcm_gtk/kcmgtk.cpp:413
+msgid "No Mozilla profiles found"
+msgstr "Не са намерени профили на Mozilla"
+
+#: ../kcm_gtk/kcmgtk.cpp:413
+msgid "Could not load Mozilla profiles"
+msgstr "Профилът на Mozilla не може да бъде зареден"
+
+#: ../kcm_gtk/kcmgtk.cpp:422 ../kcm_gtk/kcmgtk.cpp:455
+#: ../kcm_gtk/kcmgtk.cpp:576
+msgid "Mozilla profile"
+msgstr "Профил на Mozilla"
+
+#: ../kcm_gtk/kcmgtk.cpp:455
+msgid ""
+"Your Mozilla profile was updated sucessfully.  You must close and restart "
+"all Firefox and Thunderbird windows for the changes to take effect"
+msgstr "Профилът на Mozilla беше обновен успешно.  За да се задействат промените трябва да затворите и рестартирате Firefox и Thunderbird."
+
+#: ../kcm_gtk/kcmgtk.cpp:472
+msgid "Thunderbird"
+msgstr "Thunderbird"
+
+#: ../kcm_gtk/kcmgtk.cpp:472
+msgid "Firefox"
+msgstr "Firefox"
+
+#: ../kcm_gtk/kcmgtk.cpp:576
+msgid "Could not write to %1"
+msgstr "Неуспешен запис в %1"
+
